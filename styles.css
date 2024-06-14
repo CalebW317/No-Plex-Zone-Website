@@ -7,22 +7,22 @@ body {
             margin: 0;
             font-family: Arial, sans-serif;
             background-color: #f8f9fa;
-        }
+}
 
-        h1 {
+h1 {
             font-size: 100px;
             display: flex;
             justify-content: center;
             margin-bottom: 50px;
             color: #343a40;
-        }
+}
 
-        .button-container {
+.button-container {
             display: flex;
             gap: 20px;
-        }
+}
 
-        .button {
+.button {
             padding: 15px 30px;
             font-size: 16px;
             color: #fff;
@@ -33,8 +33,21 @@ body {
             text-decoration: none;
             text-align: center;
             transition: background-color 0.3s ease;
-        }
+}
 
-        .button:hover {
+.button-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+}
+
+.caption {
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #343a40;
+}
+
+
+.button:hover {
             background-color: #0056b3;
-        }
+}
