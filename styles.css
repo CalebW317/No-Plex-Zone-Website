@@ -10,6 +10,9 @@ body {
         }
 
         h1 {
+            font-size: 100px;
+            display: flex;
+            justify-content: center;
             margin-bottom: 50px;
             color: #343a40;
         }
