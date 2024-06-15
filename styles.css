@@ -7,7 +7,7 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
     background-size: cover;
-    background-image: url("/images/saul.jpg");
+    background-image: url("./images/saul.jpg");
     background-color: #cccccc;
 }
 
