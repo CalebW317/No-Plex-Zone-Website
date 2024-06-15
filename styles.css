@@ -6,13 +6,13 @@ body {
     height: 100vh;
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #f8f9fa;
+    background-color: #282a2d;
 }
 
 h1 {
     font-size: 100px;
     margin-bottom: 50px;
-    color: #b3f2ff;
+    color: # e5a00d;
     text-align: center;
     width: 100%;
 }
