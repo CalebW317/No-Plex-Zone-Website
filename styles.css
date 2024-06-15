@@ -6,7 +6,7 @@ body {
     height: 100vh;
     margin: 0;
     font-family: Arial, sans-serif;
-    background-image: url("saul.jpg");
+    background-image: url("../Images/saul.jpg");
     background-color: #cccccc;
 }
 
