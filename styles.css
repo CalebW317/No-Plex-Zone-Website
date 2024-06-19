@@ -16,7 +16,12 @@
 }
 
 .content {
-    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center; /* Optional: Center text inside content div */
+    height: calc(100vh - 60px); /* Adjust based on your header/footer height */
 }
 
 h1 {
@@ -71,7 +76,11 @@ h1 {
 
  /* Style to make the image links look like buttons */
 .donate-button {
-        display: inline-block;
+        position: fixed;
+        left: 0;
+        bottom: 0; 
+    width: 100%;
+    z-index: 1000;
         margin: 10px;
         border: none;
         padding: 0;
