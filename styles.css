@@ -6,13 +6,17 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0;
     font-family: Arial, sans-serif;
     background-size: cover;
     background-image: url("./images/saul.jpg");
     background-color: #cccccc;
     background-position: center;
+}
+
+.content {
+    flex: 1;
 }
 
 h1 {
@@ -83,6 +87,10 @@ h1 {
 
 footer {
     text-align: center;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f1f1f1;
 }
 
 /* Responsive design for small screens */
