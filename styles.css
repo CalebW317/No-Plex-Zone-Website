@@ -76,18 +76,18 @@ h1 {
 
  /* Style to make the image links look like buttons */
 .donate-button {
-        position: fixed;
-        left: 0;
-        bottom: 0; 
+    position: fixed;
+    left: 0;
+    bottom: 0; 
     width: 100%;
     z-index: 1000;
-        margin: 10px;
-        border: none;
-        padding: 0;
-        background: none;
-        cursor: pointer;
-        color: var(--orange);
-        gap: 100px;
+    margin: 10px;
+    border: none;
+    padding: 0;
+    background: none;
+    cursor: pointer;
+    gap: 50px;
+    box-sizing: border-box;
     }
 
 .donate-button img {
