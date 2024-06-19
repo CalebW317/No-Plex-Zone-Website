@@ -62,6 +62,20 @@ h1 {
     background-color: #0056b3;
 }
 
+ /* Style to make the image links look like buttons */
+.donate-button {
+        display: inline-block;
+        margin: 10px;
+        border: none;
+        padding: 0;
+        background: none;
+        cursor: pointer;
+    }
+
+.donate-button img {
+        width: 150px; /* Adjust size as needed */
+    }
+
 /* Responsive design for small screens */
 @media (max-width: 600px) {
     h1 {
