@@ -1,4 +1,7 @@
-body {
+:root {
+    --orange: #e5a00d;   
+}
+    body {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -15,7 +18,7 @@ body {
 h1 {
     font-size: 100px;
     margin-bottom: 50px;
-    color: #e5a00d;
+    color: var(--orange);
     text-align: center;
     width: 100%;
 }
@@ -38,7 +41,7 @@ h1 {
     padding: 15px 30px;
     font-size: 16px;
     color: #fff;
-    background-color: #e5a00d;
+    background-color: var(--orange);
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -54,12 +57,17 @@ h1 {
     margin-bottom: 10px;
     font-weight: bold;
     font-size: 20px;
-    color: #e5a00d;
+    color: var(--orange);
     text-align: center;
 }
 
 .button:hover {
     background-color: #0056b3;
+}
+
+.donate-container {
+    display: flex;
+    justify-content: bottom;
 }
 
  /* Style to make the image links look like buttons */
@@ -70,6 +78,7 @@ h1 {
         padding: 0;
         background: none;
         cursor: pointer;
+        color: var(--orange);
     }
 
 .donate-button img {
