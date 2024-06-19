@@ -22,7 +22,7 @@
     flex-direction: column;
     text-align: center; /* Optional: Center text inside content div */
     height: 10%; /* Adjust based on your header/footer height */
-    text-color: #fff;
+    text-color: #FFF;
 }
 
 h1 {
