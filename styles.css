@@ -66,12 +66,13 @@ h1 {
 }
 
 .donate {
-    color: var(--orange);
+    display: flex;
+    justify-content: end;
 }
 
 .donate-container {
     display: flex;
-    justify-content: bottom;
+    justify-content: end;
 }
 
  /* Style to make the image links look like buttons */
@@ -87,7 +88,7 @@ h1 {
     }
 
 .donate-button img {
-        width: 300px; /* Adjust size as needed */
+        width: 150px; /* Adjust size as needed */
     }
 
 /* Responsive design for small screens */
