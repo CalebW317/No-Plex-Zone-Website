@@ -117,4 +117,8 @@ footer {
         font-size: 18px;
         padding: 10px 20px;
     }
+
+    .donate-button img {
+        width: 50px;
+    }
 }
