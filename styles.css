@@ -67,6 +67,8 @@ h1 {
 
 .donate-container {
     gap: 50px;
+    display: flex;
+    justify-content: center;
 }
  /* Style to make the image links look like buttons */
 .donate-button {
@@ -127,5 +129,10 @@ footer {
 
     .donate-button img {
         width: 100px;
+    }
+    
+    .donate-container {
+        flex-direction: column;
+        align-items: center;
     }
 }
