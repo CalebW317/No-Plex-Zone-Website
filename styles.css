@@ -67,7 +67,7 @@ h1 {
 
  /* Style to make the image links look like buttons */
 .donate-button {
-    position: relative;
+    position: fixed;
     bottom: 0; 
     margin: 10px;
     border: none;
@@ -84,7 +84,7 @@ h1 {
     }
 
 footer {
-    position: fixed;
+    position: relative;
     width: 100%;
     bottom: 0;
     text-align: center;
