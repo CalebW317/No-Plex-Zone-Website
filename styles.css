@@ -93,6 +93,10 @@ footer {
     color: #FFF;
 }
 
+.paypal {
+    width: 300px;
+}
+
 /* Responsive design for small screens */
 @media (max-width: 600px) {
     h1 {
