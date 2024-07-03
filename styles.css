@@ -164,7 +164,7 @@ footer {
 /* Background for mobile devices */
 @media only screen and (max-width: 768px) {
   body {
-    background-image: url('./images/oppenheimer_mobile.jpg');
+    background-image: url('./images/joker_mobile.jpg');
     background-size: cover;
     background-position: center;
   }
