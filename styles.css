@@ -168,9 +168,7 @@ body > * {
     }
 
     .button-wrapper {
-        width: 100%;
-        max-width: 300px;
-        margin: 10px 0; /* Maintain spacing on mobile */
+        margin: 150px 0; /* Maintain spacing on mobile */
     }
 
     .logo-button img {
@@ -179,11 +177,11 @@ body > * {
     }
 
     .caption {
-        font-size: 10px;
+        font-size: 15px;
     }
 
     .donate-button img {
-        width: 100px;
+        width: 50px;
     }
     
     .donate-container {
