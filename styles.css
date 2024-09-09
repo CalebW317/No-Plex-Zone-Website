@@ -56,7 +56,7 @@ h1 {
     display: flex;
     justify-content: left;
     padding: 0;
-    margin: 5px;
+    margin: 2.5px;
 }
  /* Style to make the image links look like buttons */
 .donate-button {
@@ -181,7 +181,7 @@ body > * {
     }
 
     .donate-button img {
-        width: 50px;
+        width: 55px;
     }
     
     .donate-container {
