@@ -39,7 +39,7 @@ h1 {
 .button-wrapper {
     margin: 10px; /* Margin to separate buttons */
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
 }
 
