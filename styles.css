@@ -1,5 +1,7 @@
 :root {
     --orange: #e5a00d;   
+    --white: #FFFFFF;
+    --gray: #F0F0F0;
 }
     body {
     display: flex;
@@ -19,6 +21,7 @@ h1 {
     font-size: 75px;
     margin-bottom: 0;
     color: var(--orange);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Shadow effect for better readability */
     text-align: center;
     width: 100%;
 }
@@ -58,6 +61,7 @@ h1 {
     font-weight: bold;
     font-size: 20px;
     color: var(--orange);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Shadow effect for better readability */
     text-align: center;
 }
 
