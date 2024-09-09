@@ -10,7 +10,7 @@
     margin: 0;
     font-family: Arial, sans-serif;
     background-size: cover;
-    background-image: url("./images/saul.jpg");
+    background-image: url("./images/desktop/bettercallsaul.jpg");
     background-color: #cccccc;
     background-position: center;
 }
@@ -164,7 +164,7 @@ footer {
 /* Background for mobile devices */
 @media only screen and (max-width: 768px) {
   body {
-    background-image: url('./images/joker_mobile.jpg');
+    background-image: url('./images/mobile/joker.jpg');
     background-size: cover;
     background-position: center;
   }
