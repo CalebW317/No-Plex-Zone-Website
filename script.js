@@ -3,8 +3,8 @@ document.addEventListener("DOMContentLoaded", function() {
     const isMobile = window.matchMedia("(max-width: 768px)").matches;
     
     // Define image paths for desktop and mobile
-    const desktopImages = ['bettercallsaul.jpg', 'whiplash.jpeg', 'deadpool_wolverine.jpg', 'f4.jpg']; // Add more images as needed
-    const mobileImages = ['joker.jpg', 'us.jpg', 'f4.jpg']; // Add more images as needed
+    const desktopImages = ['bettercallsaul.jpg', 'deadpool_wolverine.jpg', 'f4.jpg', 'forrest.jpg', 'whiplash.jpeg', 'wicked.jpg']; // Add more images as needed
+    const mobileImages = ['alien_romulus.jpg', 'deadpool_wolverine.jpg', 'endgame.jpg','f4.jpg', 'joker.jpg', 'minecraft.jpg', 'us.jpg', 'wicked.jpg']; // Add more images as needed
     
     const imageFolder = isMobile ? 'images/mobile/' : 'images/desktop/';
     const imageList = isMobile ? mobileImages : desktopImages;
