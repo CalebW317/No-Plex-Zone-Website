@@ -194,12 +194,6 @@ body > * {
 
 /* Background for mobile devices */
 @media only screen and (max-width: 768px) {
- /* body {
-    background-image: url('./images/mobile/joker.jpg');
-    background-size: cover;
-    background-position: center;
-  } */
-
   .slide {
         background-image: url('./images/mobile/joker.jpg');
   }
