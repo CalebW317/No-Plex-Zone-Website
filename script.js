@@ -9,6 +9,9 @@ document.addEventListener("DOMContentLoaded", function() {
     const imageFolder = isMobile ? 'images/mobile/' : 'images/desktop/';
     const imageList = isMobile ? mobileImages : desktopImages;
 
+    // Clear any existing slides to prevent duplication
+    slideshow.innerHTML = '';
+
     // Load images into the slideshow
     imageList.forEach(image => {
         const slide = document.createElement('div');
