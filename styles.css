@@ -28,7 +28,7 @@ h1 {
 
 .button-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     flex-wrap: wrap;
     justify-content: center;
@@ -39,24 +39,8 @@ h1 {
 .button-wrapper {
     margin: 10px; /* Margin to separate buttons */
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-}
-
-.button {
-    padding: 15px 30px;
-    font-size: 16px;
-    color: #fff;
-    background-color: var(--orange);
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-decoration: none;
-    text-align: center;
-    transition: background-color 0.3s ease;
-    width: 100%;
-    max-width: 200px;
-    max-height: 150px;
 }
 
 .caption {
@@ -66,10 +50,6 @@ h1 {
     color: var(--white);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Shadow effect for better readability */
     text-align: center;
-}
-
-.button:hover {
-    background-color: #0056b3;
 }
 
 .donate-container {
