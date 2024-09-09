@@ -133,13 +133,15 @@ footer {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     overflow: hidden;
     z-index: -1;
 }
 
 .slide {
     position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     background-size: cover;
@@ -191,11 +193,10 @@ body > * {
         flex-direction: column;
         align-items: center;
     }
-}
 
-/* Background for mobile devices */
-@media only screen and (max-width: 768px) {
-  .slide {
-        background-image: none;
-  }
+    .slide {
+        background-size: cover; /* Ensure background image covers the slide */
+        background-position: center;
+        min-height: 100vh;
+    }
 }
