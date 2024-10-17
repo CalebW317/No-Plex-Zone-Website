@@ -194,6 +194,19 @@ body > * {
         background-position: center;
         min-height: 100vh;
     }
+
+    /* Styles for the Status Widget */
+    
+     .status-widget {
+        width: 90%; /* Use 90% of the screen width */
+        padding: 5px; /* Reduce padding */
+        margin: 10px auto; /* Center with auto margins */
+        font-size: 12px; /* Reduce font size */
+    }
+
+    .status {
+        font-size: 10px; /* Reduce the status text size */
+    }
 }
 
 /* Styles for the Status Widget */
