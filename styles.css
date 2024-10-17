@@ -195,3 +195,58 @@ body > * {
         min-height: 100vh;
     }
 }
+
+/* Styles for the Status Widget */
+
+.status-widget {
+    position: fixed;
+    top: 10px; /* Position it at the top of the page */
+    right: 10px; /* Align it to the right */
+    width: 300px; /* Define a width for the widget */
+    background-color: #f5f5f5; /* Light grey background */
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 8px; /* Rounded corners */
+    padding: 20px; /* Some padding inside the widget */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Drop shadow to give it a lifted look */
+    z-index: 1000; /* Keep it on top of other elements */
+    font-family: Arial, sans-serif; /* Simple, clean font */
+}
+
+.library-status {
+    margin-bottom: 15px;
+}
+
+.status {
+    font-size: 16px;
+    padding: 8px;
+    border-radius: 5px;
+    color: white;
+    margin-top: 5px;
+    text-align: center;
+}
+
+.down {
+    background-color: red;
+}
+
+.partial {
+    background-color: orange;
+}
+
+.working {
+    background-color: green;
+}
+
+/* Heading styles for the library names */
+.status-widget h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+/* Overall widget heading style */
+.status-widget h2 {
+    margin-bottom: 15px;
+    font-size: 20px;
+    text-align: center; /* Center the heading */
+    color: #333; /* Dark text for the heading */
+}
