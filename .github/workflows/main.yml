@@ -16,6 +16,8 @@ on:
         required: true
         default: 'working'
 
+permissions:
+  contents: write # Allow the workflow to push changes to the repository
 
 jobs:
   update-status:
