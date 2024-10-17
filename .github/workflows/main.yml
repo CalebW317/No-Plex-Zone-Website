@@ -1,0 +1,31 @@
+name: Update Status
+
+on:
+  workflow_dispatch: # This allows manual triggering
+
+jobs:
+  update-status:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Update status.json
+      run: |
+        echo 'Updating status...'
+        # Define the new status you want to set for each library
+        echo '{ "movies": "down", "tvshows": "partial", "anime": "working" }' > status.json
+
+    - name: Commit changes
+      run: |
+        git config --global user.name "GitHub Action"
+        git config --global user.email "action@github.com"
+        git add status.json
+        git commit -m "Updated status via GitHub Actions"
+
+    - name: Push changes
+      env:
+        GH_TOKEN: ${{ secrets.status_update_token }}
+      run: |
+        git push https://x-access-token:${{ secrets.status_update_token }}@github.com/${{ github.repository }}.git
