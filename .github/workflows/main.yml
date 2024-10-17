@@ -2,6 +2,20 @@ name: Update Status
 
 on:
   workflow_dispatch: # This allows manual triggering
+    inputs:
+      movies:
+        description: 'Status for Movies'
+        required: true
+        default: 'working'
+      tvshows:
+        description: 'Status for TV Shows'
+        required: true
+        default: 'working'
+      anime:
+        description: 'Status for Anime'
+        required: true
+        default: 'working'
+
 
 jobs:
   update-status:
@@ -14,8 +28,11 @@ jobs:
     - name: Update status.json
       run: |
         echo 'Updating status...'
-        # Define the new status you want to set for each library
-        echo '{ "movies": "down", "tvshows": "partial", "anime": "working" }' > status.json
+        echo "{
+          \"movies\": \"${{ github.event.inputs.movies }}\",
+          \"tvshows\": \"${{ github.event.inputs.tvshows }}\",
+          \"anime\": \"${{ github.event.inputs.anime }}\"
+        }" > status.json
 
     - name: Commit changes
       run: |
