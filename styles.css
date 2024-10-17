@@ -263,3 +263,24 @@ body > * {
     text-align: center; /* Center the heading */
     color: #333; /* Dark text for the heading */
 }
+
+#minimizeButton {
+    background-color: #007bff; /* Button color */
+    color: white; /* Text color */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 5px 10px; /* Padding */
+    cursor: pointer; /* Pointer cursor */
+    margin-bottom: 10px; /* Space below button */
+}
+
+/* Style for minimized state */
+.minimized {
+    height: 30px; /* Set height when minimized */
+    overflow: hidden; /* Hide overflow */
+}
+
+.minimized h3 {
+    display: inline; /* Keep title visible */
+}
+
