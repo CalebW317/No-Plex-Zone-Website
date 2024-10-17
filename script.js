@@ -45,3 +45,42 @@ document.addEventListener("DOMContentLoaded", function() {
     setInterval(showNextSlide, 5000);
     slides[currentSlide].classList.add('active');
 });
+
+// Update library status
+
+function fetchStatus() {
+    fetch('https://raw.githubusercontent.com/CALEBW317/Requests-Homepage/main/status.json')
+        .then(response => response.json())
+        .then(data => {
+            setStatus('movies', data.movies);
+            setStatus('tvshows', data.tvshows);
+            setStatus('anime', data.anime);
+        })
+        .catch(err => console.error('Failed to fetch status:', err));
+}
+
+function setStatus(library, status) {
+    let statusDiv;
+
+    if (library === 'movies') {
+        statusDiv = document.getElementById('moviesStatus');
+    } else if (library === 'tvshows') {
+        statusDiv = document.getElementById('tvShowsStatus');
+    } else if (library === 'anime') {
+        statusDiv = document.getElementById('animeStatus');
+    }
+
+    if (status === 'working') {
+        statusDiv.textContent = 'UP';
+        statusDiv.className = 'status working';
+    } else if (status === 'partial') {
+        statusDiv.textContent = 'PARTIAL';
+        statusDiv.className = 'status partial';
+    } else if (status === 'down') {
+        statusDiv.textContent = 'DOWN';
+        statusDiv.className = 'status down';
+    }
+}
+
+// Fetch the status when the page loads
+window.onload = fetchStatus;
