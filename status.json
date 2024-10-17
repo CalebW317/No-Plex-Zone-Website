@@ -1,5 +1,5 @@
 {
   "movies": "down",
-  "tvshows": "down",
-  "anime": "down"
+  "tvshows": "partial",
+  "anime": "working"
 }
