@@ -84,3 +84,24 @@ function setStatus(library, status) {
 
 // Fetch the status when the page loads
 window.onload = fetchStatus;
+
+
+// Functionality for status widget minimize button
+
+function toggleWidget() {
+    const widget = document.getElementById('statusWidget');
+    const content = document.getElementById('statusContent');
+    const button = document.getElementById('minimizeButton');
+
+    if (widget.classList.contains('minimized')) {
+        // Restore widget
+        widget.classList.remove('minimized');
+        content.style.display = 'block'; // Show content
+        button.textContent = 'Minimize'; // Change button text
+    } else {
+        // Minimize widget
+        widget.classList.add('minimized');
+        content.style.display = 'none'; // Hide content
+        button.textContent = 'Expand'; // Change button text
+    }
+}
