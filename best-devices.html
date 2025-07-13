@@ -231,43 +231,78 @@
     }
 
     @media (min-width: 768px) {
-      .hamburger-button {
-        display: none;
-      }
+            /* Ensure header container is flex on desktop */
+            header .container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
 
-      .mobile-menu {
-        display: none;
-      }
+            /* Hide the spacer on desktop */
+            .header-spacer {
+                display: none;
+            }
 
-      header .container nav ul {
-        display: flex;
-      }
-    }
+            header .container a.text-3xl { /* Reset title for desktop */
+                margin-left: 0;
+                margin-right: 0;
+                text-align: left;
+            }
+            
+            /* Hide hamburger on desktop */
+            .hamburger-button {
+                display: none;
+            }
+
+            /* Hide mobile menu container on desktop */
+            .mobile-menu {
+                display: none;
+            }
+
+            /* Show desktop nav links */
+            header .container nav ul {
+                display: flex; /* Ensure desktop nav list is flex */
+            }
 
     @media (max-width: 767px) {
-      .hamburger-button {
-        display: block !important;
-      }
+            header .container {
+                display: flex; /* Set display to flex */
+                flex-direction: row; /* Keep items in a row */
+                align-items: center;
+            }
 
-      header .container nav ul {
-        display: none;
-      }
+             /* Style for the "No Plex Zone" title on mobile */
+            header .container a.text-3xl {
+                margin-right: auto; /* Push itself and subsequent elements to the right */
+                margin-left: auto; /* Push itself and preceding elements to the left */
+                text-align: center; /* Ensures the text is visually centered within its own space */
+                flex-shrink: 0; /* Prevent the title from shrinking too much */
+            }
+            
+            .hamburger-button {
+                display: block !important;
+            }
+            
+            /* Hide desktop nav links on mobile */
+            header .container nav ul {
+                display: none;
+            }
 
-      header .container nav {
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        flex-grow: 1;
-      }
+            /* Adjust header alignment for mobile: space between logo/title and hamburger/toggle */
+            header .container nav {
+                display: flex;
+                align-items: center;
+                flex-shrink: 0;
+            }
     }
     </style>
 </head>
 <body class="antialiased">
 
   <header class="py-6 shadow-lg transition-colors duration-300" style="background-color: var(--header-footer-bg);">
-    <div class="container flex flex-col md:flex-row justify-between items-center">
-      <a href="index.html" class="text-3xl font-bold mb-4 md:mb-0" style="color: var(--text-color);">No Plex Zone</a>
-      <nav class="flex items-center space-x-6 w-full justify-end">
+    <div class="container flex items-center justify-between">
+      <a href="index.html" class="text-3xl font-bold" style="color: var(--text-color);">No Plex Zone</a>
+      <nav class="flex items-center space-x-6 justify-end">
         <ul class="hidden md:flex space-x-6">
           <li><a href="index.html" style="color: var(--text-color);">Back to Home</a></li>
           <li><a href="https://overseerr.noplexzone.com" target="_blank" style="color: var(--text-color);">Content Requests</a></li>
