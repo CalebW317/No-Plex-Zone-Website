@@ -247,6 +247,12 @@
                 display: none;
             }
 
+            header .container {
+                flex-direction: row; /* Ensure items are in a row */
+                justify-content: space-between; /* Space out the title and the nav items */
+                align-items: center; /* Vertically align them */
+            }
+            
             /* Adjust header alignment for mobile: space between logo/title and hamburger/toggle */
             header .container nav {
                 display: flex;
@@ -262,8 +268,7 @@
     <header class="bg-gray-900 py-6 shadow-lg transition-colors duration-300"
             style="background-color: var(--header-footer-bg);">
         <div class="container flex justify-between items-center">
-            <a href="index.html" class="text-3xl font-bold mb-4 md:mb-0"
-                style="color: var(--text-color);">No Plex Zone</a>
+            <a href="index.html" class="text-3xl font-bold" style="color: var(--text-color);">No Plex Zone</a>
             <nav class="flex items-center justify-end gap-4 w-full">
                 <ul class="hidden md:flex space-x-6">
                     <li><a href="best-devices.html" class="text-gray-300 hover:text-white transition duration-300"
