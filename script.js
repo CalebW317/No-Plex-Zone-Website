@@ -1,11 +1,45 @@
 // script.js
 
 document.addEventListener('DOMContentLoaded', () => {
-    const htmlElement = document.documentElement;
+    const htmlElement = document.documentElement; // This refers to the <html> tag
     const themeToggle = document.getElementById('theme-toggle');
     const plexStatusIndicator = document.getElementById('plex-status-indicator');
 
-    // ... (Your Light Mode / Dark Mode Logic remains the same) ...
+    // --- Light Mode / Dark Mode Logic ---
+
+    // Function to set the theme
+    function setTheme(theme) {
+        if (theme === 'dark') {
+            htmlElement.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
+            themeToggle.textContent = 'Light Mode'; // Update button text
+        } else {
+            htmlElement.classList.remove('dark');
+            localStorage.setItem('theme', 'light');
+            themeToggle.textContent = 'Dark Mode'; // Update button text
+        }
+    }
+
+    // Check for saved theme preference or system preference on load
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        setTheme(savedTheme);
+    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        // If system prefers dark, apply dark mode
+        setTheme('dark');
+    } else {
+        // Default to light mode if no preference saved and system prefers light
+        setTheme('light');
+    }
+
+    // Toggle theme on button click
+    themeToggle.addEventListener('click', () => {
+        if (htmlElement.classList.contains('dark')) {
+            setTheme('light');
+        } else {
+            setTheme('dark');
+        }
+    });
 
     // --- Server Status Logic ---
 
