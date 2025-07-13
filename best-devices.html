@@ -183,8 +183,147 @@
     </style>
 </head>
 <body class="antialiased">
-    <!-- Hamburger + Theme Toggle Setup: You'd include the actual script.js for toggle logic -->
-    <!-- The rest of your HTML remains unchanged, but ensure you add the necessary mobile-menu div and script.js link -->
+
+    <header class="py-6 shadow-lg transition-colors duration-300"
+            style="background-color: var(--header-footer-bg);">
+        <div class="container flex flex-col md:flex-row justify-between items-center">
+            <a href="index.html" class="text-3xl font-bold mb-4 md:mb-0"
+               style="color: var(--text-color);">No Plex Zone</a>
+            <nav class="flex items-center justify-end gap-4 w-full">
+                <ul class="hidden md:flex space-x-6">
+                    <li><a href="index.html" style="color: var(--text-color);">Back to Home</a></li>
+                    <li><a href="best-devices.html" style="color: var(--text-color);">Best Devices</a></li>
+                    <li><a href="https://overseerr.noplexzone.com" target="_blank" style="color: var(--text-color);">Content Requests</a></li>
+                    <li><a href="https://monitarr.noplexzone.com" target="_blank" style="color: var(--text-color);">Download Queue</a></li>
+                    <li><a href="other-projects.html" style="color: var(--text-color);">Other Projects</a></li>
+                    <li><a href="request-access.html" style="color: var(--text-color);">Request Access</a></li>
+               </ul>
+               <button id="theme-toggle" aria-label="Toggle light and dark mode">
+                   <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun">
+                       <circle cx="12" cy="12" r="5"></circle>
+                       <line x1="12" y1="1" x2="12" y2="3"></line>
+                       <line x1="12" y1="21" x2="12" y2="23"></line>
+                       <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                       <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                       <line x1="1" y1="12" x2="3" y2="12"></line>
+                       <line x1="21" y1="12" x2="23" y2="12"></line>
+                       <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                       <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                   </svg>
+                   <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon">
+                       <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                   </svg>
+               </button>
+               <button id="hamburger-button" class="hamburger-button md:hidden" aria-label="Open mobile menu">
+                   <span class="line"></span>
+                   <span class="line"></span>
+                   <span class="line"></span>
+               </button>
+            </nav>
+        </div>
+    </header>
+
+    <div id="mobile-menu" class="mobile-menu">
+        <button id="mobile-menu-close" class="mobile-menu-close" aria-label="Close mobile menu">
+            &times;
+        </button>
+        <ul>
+            <li><a href="index.html" style="color: var(--text-color);">Back to Home</a></li>
+            <li><a href="best-devices.html" style="color: var(--text-color);">Best Devices</a></li>
+            <li><a href="https://overseerr.noplexzone.com" target="_blank" style="color: var(--text-color);">Content Requests</a></li>
+            <li><a href="https://monitarr.noplexzone.com" target="_blank" style="color: var(--text-color);">Download Queue</a></li>
+            <li><a href="other-projects.html" style="color: var(--text-color);">Other Projects</a></li>
+            <li><a href="request-access.html" style="color: var(--text-color);">Request Access</a></li>
+        </ul>
+    </div>
+
+    
+    <section class="py-16 flex-grow">
+        <div class="container">
+            <h2 class="section-title">Best Devices for Plex</h2>
+            <div class="card">
+                <p class="text-lg leading-relaxed mb-8 text-center"
+                   style="color: var(--text-color);">
+                    Plex is incredibly versatile and runs on almost any device. However, for the best streaming experience,
+                    I recommend the following. Click the "View on Amazon" button to learn more or purchase!
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                    <div class="device-item">
+                        <img class="device-logo" src="https://upload.wikimedia.org/wikipedia/sco/thumb/2/21/Nvidia_logo.svg/1200px-Nvidia_logo.svg.png" alt="NVIDIA Logo" onerror="this.onerror=null;this.src='https://placehold.co/100x100/76B900/FFFFFF?text=NVIDIA'">
+                        <h3>NVIDIA Shield TV</h3>
+                        <p>
+                            Often considered the best all-around Plex client due to its powerful processor, 4K HDR support,
+                            and excellent codec compatibility. Ideal for serious streamers.
+                        </p>
+                        <a href="https://www.amazon.com/s?k=nvidia+shield+tv" target="_blank" class="btn-primary">View on Amazon</a>
+                    </div>
+
+                    <div class="device-item">
+                        <img class="device-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Apple_logo_grey.svg/862px-Apple_logo_grey.svg.png" alt="Apple Logo" onerror="this.onerror=null;this.src='https://placehold.co/100x100/A2AAAD/FFFFFF?text=Apple'">
+                        <h3>Apple TV 4K</h3>
+                        <p>
+                            A premium option with a sleek interface, robust performance, and excellent integration within
+                            the Apple ecosystem. Perfect for faithful Apple users.
+                        </p>
+                        <a href="https://www.amazon.com/s?k=apple+tv+4k" target="_blank" class="btn-primary">View on Amazon</a>
+                    </div>
+
+                    <div class="device-item">
+                        <img class="device-logo" src="https://m.media-amazon.com/images/I/41UpCIriqhL.png" alt="Roku Logo" onerror="this.onerror=null;this.src='https://placehold.co/100x100/662D91/FFFFFF?text=Roku'">
+                        <h3>Roku Devices</h3>
+                        <p>
+                            Affordable, user-friendly, and widely compatible. Roku devices offer a great balance of
+                            performance and value, especially models like the Roku Ultra.
+                        </p>
+                        <a href="https://www.amazon.com/s?k=roku+ultra" target="_blank" class="btn-primary">View on Amazon</a>
+                    </div>
+
+                    <!-- Smart TVs with Native Plex App -->
+                    <div class="device-item">
+                        <img class="device-logo" src="https://cdn-icons-png.freepik.com/512/10922/10922622.png" alt="Smart TV Clipart" >
+                        <h3>Smart TVs (Built-in Plex)</h3>
+                        <p class="text-gray-300">
+                            Many modern Samsung, LG, Sony, and other smart TVs have a built-in Plex app, offering
+                            convenience without needing an extra device. Check your TV's app store.
+                        </p>
+                        <a href="https://www.amazon.com/s?k=smart+tv+with+plex+app" target="_blank" class="btn-primary">View on Amazon</a>
+                    </div> 
+              
+                    <!-- Mobile Devices (iOS/Android) -->
+                    <div class="device-item">
+                        <img class="device-logo" src="https://cdn-icons-png.flaticon.com/256/4504/4504138.png" alt="Mobile Device Clipart" >
+                        <h3>Mobile Devices</h3>
+                        <p class="text-gray-300">
+                            Perfect for on-the-go streaming. Both iOS and Android devices have excellent Plex apps that recently went under a complete overhaul.
+                        </p>
+                        <a href="https://www.amazon.com/s?k=mobile+devices" target="_blank" class="btn-primary">View on Amazon</a>
+                    </div> 
+
+                    <div class="device-item">
+                        <img class="device-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Google_Chrome_icon_%28February_2022%29.svg/1200px-Google_Chrome_icon_%28February_2022%29.svg.png" alt="Chromecast Logo" onerror="this.onerror=null;this.src='https://placehold.co/100x100/4285F4/FFFFFF?text=Chromecast'">
+                        <h3>Chromecast with Google TV</h3>
+                        <p>
+                            A smart and affordable streaming dongle with a remote, integrating Google TV for a
+                            streamlined content discovery experience. Great for Android users.
+                        </p>
+                        <a href="https://www.amazon.com/s?k=chromecast+with+google+tv" target="_blank" class="btn-primary">View on Amazon</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-8 text-center transition-colors duration-300"
+            style="background-color: var(--header-footer-bg); color: var(--text-color);">
+        <div class="container">
+            <p>&copy; 2025 No Plex Zone. All rights reserved.</p>
+            <p class="mt-2">Powered by Caleb Watson.</p>
+        </div>
+    </footer>
+
     <script src="script.js"></script>
 </body>
 </html>
