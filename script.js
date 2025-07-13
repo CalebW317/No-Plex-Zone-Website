@@ -1,25 +1,27 @@
 // script.js
 
 document.addEventListener('DOMContentLoaded', () => {
-    const htmlElement = document.documentElement; // This refers to the <html> tag
+    const htmlElement = document.documentElement;
     const themeToggle = document.getElementById('theme-toggle');
 
-    // --- Light Mode / Dark Mode Logic ---
+    // --- NEW MOBILE NAV ELEMENTS ---
+    const hamburgerButton = document.getElementById('hamburger-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuCloseButton = document.getElementById('mobile-menu-close');
+    // Get all links inside the mobile menu to close menu on click
+    const mobileMenuLinks = mobileMenu ? mobileMenu.querySelectorAll('a') : [];
 
-    // Function to set the theme
+    // --- Light Mode / Dark Mode Logic ---
     function setTheme(theme) {
         if (theme === 'dark') {
             htmlElement.classList.add('dark');
             localStorage.setItem('theme', 'dark');
-            // themeToggle.textContent = 'Light Mode'; // REMOVE THIS LINE
         } else {
             htmlElement.classList.remove('dark');
             localStorage.setItem('theme', 'light');
-            // themeToggle.textContent = 'Dark Mode'; // REMOVE THIS LINE
         }
     }
 
-    // Check for saved theme preference or system preference on load
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) {
         setTheme(savedTheme);
@@ -29,26 +31,44 @@ document.addEventListener('DOMContentLoaded', () => {
         setTheme('light');
     }
 
-    // Toggle theme on button click
-    themeToggle.addEventListener('click', () => {
-        if (htmlElement.classList.contains('dark')) {
-            setTheme('light');
-        } else {
-            setTheme('dark');
-        }
-    });
+    if (themeToggle) { // Ensure theme toggle button exists
+        themeToggle.addEventListener('click', () => {
+            if (htmlElement.classList.contains('dark')) {
+                setTheme('light');
+            } else {
+                setTheme('dark');
+            }
+        });
+    }
 
-    // --- Server Status Logic (Keep your current version here, potentially with commented out fetch) ---
-    // Make sure this part is not causing errors that prevent the above from running.
-    // If you had it commented out for debugging the toggle, you can try uncommenting it
-    // IF your Cloudflare Worker is now successfully returning JSON (even an error JSON).
-    // If your Worker is still throwing 1101s, keep this section commented out for now.
+    // --- NEW MOBILE NAV TOGGLE LOGIC ---
+    if (hamburgerButton && mobileMenu && mobileMenuCloseButton) {
+        hamburgerButton.addEventListener('click', () => {
+            mobileMenu.classList.add('is-open');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling background
+        });
 
+        mobileMenuCloseButton.addEventListener('click', () => {
+            mobileMenu.classList.remove('is-open');
+            document.body.style.overflow = ''; // Restore scrolling
+        });
+
+        // Close mobile menu when a link is clicked
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('is-open');
+                document.body.style.overflow = '';
+            });
+        });
+    }
+
+
+    // --- Server Status Logic (Keep your current version here) ---
     const PLEX_STATUS_API_URL = 'https://plex-status.noplexzone999.workers.dev/'; // CHANGE THIS TO YOUR ACTUAL WORKER URL
 
     async function checkPlexServerStatus() {
         const plexStatusIndicator = document.getElementById('plex-status-indicator');
-        if (!plexStatusIndicator) return; // Ensure the element exists on the page
+        if (!plexStatusIndicator) return;
 
         plexStatusIndicator.textContent = 'Checking...';
         plexStatusIndicator.className = 'status-checking';
@@ -59,7 +79,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             if (!response.ok) {
-                // Check if the response itself is valid JSON with an error message from the worker
                 let errorDetails = `HTTP error! status: ${response.status}`;
                 try {
                     const errorJson = await response.json();
@@ -67,7 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         errorDetails = errorJson.message;
                     }
                 } catch (e) {
-                    // Not a JSON response, or JSON parsing error
                     console.warn("Failed to parse error response as JSON:", e);
                 }
                 throw new Error(`Worker Service Error: ${errorDetails}`);
@@ -98,10 +116,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Call on page load and periodically, only if the element exists
     if (document.getElementById('plex-status-indicator')) {
-        checkPlexServerStatus(); // Initial check
-        setInterval(checkPlexServerStatus, 60000); // Check every minute
+        checkPlexServerStatus();
+        setInterval(checkPlexServerStatus, 60000);
     }
 
 });
