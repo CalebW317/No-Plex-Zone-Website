@@ -7,6 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        /* CSS Variables for Light and Dark Mode Colors */
         :root {
             --bg-color: #f7fafc;
             --text-color: #2d3748;
@@ -101,6 +102,7 @@
         .device-item a {
             margin-top: 1rem;
         }
+
         .device-logo {
             width: 5rem;
             height: 5rem;
@@ -110,133 +112,193 @@
         .apple-logo path { fill: #A2AAAD; }
         .roku-logo path { fill: #662D91; }
         .google-logo path { fill: #4285F4; }
+        
         .generic-icon {
             color: var(--generic-icon-color);
             fill: currentColor;
         }
+
+        /* Theme Toggle Button Specific Styles */
         #theme-toggle {
-            background: none;
-            border: none;
-            padding: 0.5rem;
+            background: none; /* Make background transparent for icon */
+            border: none; /* Remove border for icon */
+            padding: 0.5rem; /* Adjust padding for icon */
             cursor: pointer;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease; /* Smooth hover effect */
         }
         #theme-toggle:hover {
-            transform: scale(1.1);
+            transform: scale(1.1); /* Slightly enlarge on hover */
         }
         #theme-toggle svg {
-            width: 1.5rem;
+            width: 1.5rem; /* Icon size */
             height: 1.5rem;
-            stroke: var(--text-color);
-            fill: none;
-            transition: stroke 0.3s ease;
+            stroke: var(--text-color); /* Icon stroke matches text color */
+            fill: none; /* Default to no fill for outline icons */
+            transition: stroke 0.3s ease; /* Smooth color transition for icon */
         }
+        /* Hide the moon icon by default */
         #theme-toggle .icon-moon {
             display: none;
         }
+        /* Show the moon icon and hide the sun icon when in dark mode */
         html.dark #theme-toggle .icon-sun {
             display: none;
         }
         html.dark #theme-toggle .icon-moon {
-            display: inline-block;
+            display: inline-block; /* Show moon icon */
         }
-        .hamburger-button {
-            display: none;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            width: 2rem;
-            height: 2rem;
-            gap: 4px;
-        }
-        .hamburger-button .line {
-            background-color: var(--text-color);
-            width: 28px;
-            height: 3px;
-            border-radius: 2px;
-            transition: background-color 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
-        }
-        .hamburger-button.is-active .line {
-            opacity: 0;
-            transform: scaleX(0);
-            pointer-events: none;
-            background-color: transparent !important;
-        }
-        .mobile-menu {
-            display: none;
-        }
-        @media (max-width: 768px) {
-            .hamburger-button {
-                display: flex;
-            }
-            nav ul {
-                display: none;
-            }
-            .mobile-menu {
-                display: flex;
-                flex-direction: column;
-                gap: 1rem;
-                margin-top: 1rem;
-            }
-        }
+
+         /* === Hamburger Menu === */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 70%;
+      max-width: 300px;
+      height: 100%;
+      background-color: var(--mobile-menu-bg);
+      padding: 2rem 1.5rem;
+      box-shadow: -4px 0 10px rgba(0, 0, 0, 0.2);
+      transition: right 0.3s ease-in-out;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .mobile-menu.is-open {
+      right: 0;
+    }
+
+    .mobile-menu ul {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      margin-top: 2rem;
+    }
+
+    .mobile-menu ul li {
+      margin-bottom: 1.5rem;
+      width: 100%;
+      text-align: left;
+    }
+
+    .mobile-menu ul li a {
+      font-size: 1.25rem;
+      font-weight: 600;
+      display: block;
+      padding: 0.5rem 0;
+    }
+
+    .hamburger-button {
+      display: block;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+      z-index: 1001;
+      margin-left: 1rem;
+    }
+
+    .hamburger-button .line {
+      display: block;
+      width: 28px;
+      height: 3px;
+      background-color: var(--text-color);
+      margin: 6px 0;
+      transition: all 0.3s ease;
+    }
+
+    .hamburger-button.is-active .line {
+      opacity: 0;
+      transform: scaleX(0);
+      pointer-events: none;       /* Prevent hover or interactions */
+      background-color: transparent !important;  /* Force line to fully disappear */
+    }
+
+
+    .mobile-menu-close {
+      background: none;
+      border: none;
+      cursor: pointer;
+      align-self: flex-end;
+      font-size: 2rem;
+      line-height: 1;
+      color: var(--text-color);
+      padding: 0.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .hamburger-button {
+        display: none;
+      }
+
+      .mobile-menu {
+        display: none;
+      }
+
+      header .container nav ul {
+        display: flex;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .hamburger-button {
+        display: block !important;
+      }
+
+      header .container nav ul {
+        display: none;
+      }
+
+      header .container nav {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        flex-grow: 1;
+      }
+    }
     </style>
 </head>
 <body class="antialiased">
 
-    <header class="py-6 shadow-lg transition-colors duration-300"
-            style="background-color: var(--header-footer-bg);">
-        <div class="container flex flex-col md:flex-row justify-between items-center">
-            <a href="index.html" class="text-3xl font-bold mb-4 md:mb-0"
-               style="color: var(--text-color);">No Plex Zone</a>
-            <nav class="flex items-center justify-end gap-4 w-full">
-                <ul class="hidden md:flex space-x-6">
-                    <li><a href="index.html" style="color: var(--text-color);">Back to Home</a></li>
-                    <li><a href="best-devices.html" style="color: var(--text-color);">Best Devices</a></li>
-                    <li><a href="https://overseerr.noplexzone.com" target="_blank" style="color: var(--text-color);">Content Requests</a></li>
-                    <li><a href="https://monitarr.noplexzone.com" target="_blank" style="color: var(--text-color);">Download Queue</a></li>
-                    <li><a href="other-projects.html" style="color: var(--text-color);">Other Projects</a></li>
-                    <li><a href="request-access.html" style="color: var(--text-color);">Request Access</a></li>
-               </ul>
-               <button id="theme-toggle" aria-label="Toggle light and dark mode">
-                   <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun">
-                       <circle cx="12" cy="12" r="5"></circle>
-                       <line x1="12" y1="1" x2="12" y2="3"></line>
-                       <line x1="12" y1="21" x2="12" y2="23"></line>
-                       <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                       <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                       <line x1="1" y1="12" x2="3" y2="12"></line>
-                       <line x1="21" y1="12" x2="23" y2="12"></line>
-                       <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                       <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                   </svg>
-                   <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon">
-                       <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                   </svg>
-               </button>
-               <button id="hamburger-button" class="hamburger-button md:hidden" aria-label="Open mobile menu">
-                   <span class="line"></span>
-                   <span class="line"></span>
-                   <span class="line"></span>
-               </button>
-            </nav>
-        </div>
-    </header>
-
-    <div id="mobile-menu" class="mobile-menu">
-        <button id="mobile-menu-close" class="mobile-menu-close" aria-label="Close mobile menu">
-            &times;
-        </button>
-        <ul>
-            <li><a href="index.html" style="color: var(--text-color);">Back to Home</a></li>
-            <li><a href="best-devices.html" style="color: var(--text-color);">Best Devices</a></li>
-            <li><a href="https://overseerr.noplexzone.com" target="_blank" style="color: var(--text-color);">Content Requests</a></li>
-            <li><a href="https://monitarr.noplexzone.com" target="_blank" style="color: var(--text-color);">Download Queue</a></li>
-            <li><a href="other-projects.html" style="color: var(--text-color);">Other Projects</a></li>
-            <li><a href="request-access.html" style="color: var(--text-color);">Request Access</a></li>
+  <header class="py-6 shadow-lg transition-colors duration-300" style="background-color: var(--header-footer-bg);">
+    <div class="container flex flex-col md:flex-row justify-between items-center">
+      <a href="index.html" class="text-3xl font-bold mb-4 md:mb-0" style="color: var(--text-color);">No Plex Zone</a>
+      <nav class="flex items-center space-x-6 w-full justify-end">
+        <ul class="hidden md:flex space-x-6">
+          <li><a href="index.html" style="color: var(--text-color);">Back to Home</a></li>
+          <li><a href="https://overseerr.noplexzone.com" target="_blank" style="color: var(--text-color);">Content Requests</a></li>
+          <li><a href="https://monitarr.noplexzone.com" target="_blank" style="color: var(--text-color);">Download Queue</a></li>
+          <li><a href="other-projects.html" style="color: var(--text-color);">Other Projects</a></li>
+          <li><a href="request-access.html" style="color: var(--text-color);">Request Access</a></li>
+          <li><a href="donate.html" style="color: var(--text-color);">Donate</a></li>
         </ul>
+        <button id="theme-toggle" aria-label="Toggle light and dark mode">
+          <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+        <button id="hamburger-button" class="hamburger-button md:hidden" aria-label="Open mobile menu">
+          <span class="line"></span>
+          <span class="line"></span>
+          <span class="line"></span>
+        </button>
+      </nav>
     </div>
+  </header>
 
+  <div id="mobile-menu" class="mobile-menu">
+    <button id="mobile-menu-close" class="mobile-menu-close" aria-label="Close mobile menu">&times;</button>
+    <ul>
+      <li><a href="index.html" style="color: var(--text-color);">Back to Home</a></li>
+      <li><a href="best-devices.html" style="color: var(--text-color);">Best Devices</a></li>
+      <li><a href="https://overseerr.noplexzone.com" target="_blank" style="color: var(--text-color);">Content Requests</a></li>
+      <li><a href="https://monitarr.noplexzone.com" target="_blank" style="color: var(--text-color);">Download Queue</a></li>
+      <li><a href="other-projects.html" style="color: var(--text-color);">Other Projects</a></li>
+      <li><a href="request-access.html" style="color: var(--text-color);">Request Access</a></li>
+      <li><a href="donate.html" style="color: var(--text-color);">Donate</a></li>
+    </ul>
+  </div>
     
     <section class="py-16 flex-grow">
         <div class="container">
@@ -325,5 +387,6 @@
     </footer>
 
     <script src="script.js"></script>
+
 </body>
 </html>
