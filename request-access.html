@@ -1,119 +1,179 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" class="dark"> <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Request Access to No Plex Zone</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts - Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        /* CSS Variables for Light and Dark Mode Colors */
+        :root {
+            /* Light Mode Defaults */
+            --bg-color: #f7fafc; /* Tailwind gray-50 - very light background */
+            --text-color: #2d3748; /* Tailwind gray-800 - dark text for readability */
+            --header-footer-bg: #e2e8f0; /* Tailwind gray-200 */
+            --card-bg: #ffffff; /* Pure white for cards in light mode */
+            --input-bg: #edf2f7; /* Tailwind gray-100 for inputs */
+            --input-border: #cbd5e0; /* Tailwind gray-300 for input border */
+            --link-color: #2b6cb0; /* Tailwind blue-700 */
+            --link-hover-color: #2c5282; /* Tailwind blue-800 */
+            --hero-bg: #edf2f7; /* Tailwind gray-100 (not used on this page, but kept for consistency) */
+        }
+
+        /* Dark Mode Overrides (when html has class="dark") */
+        html.dark { /* Use html.dark instead of just .dark for higher specificity */
+            --bg-color: #1a202c; /* Tailwind gray-900 - your original dark background */
+            --text-color: #e2e8f0; /* Tailwind gray-200 - light text */
+            --header-footer-bg: #1f2937; /* Tailwind gray-800 */
+            --card-bg: #2d3748; /* Tailwind gray-700 - your original card background */
+            --input-bg: #4a5568; /* Tailwind gray-700 for inputs */
+            --input-border: #6b7280; /* Tailwind gray-500 for input border */
+            --link-color: #90cdf4; /* Tailwind blue-300 */
+            --link-hover-color: #c3dafe; /* Tailwind blue-200 */
+            --hero-bg: #1f2937; /* Tailwind gray-800 */
+        }
+
+        /* Apply variables to your custom CSS classes */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #1a202c; /* Dark background */
-            color: #e2e8f0; /* Light text */
+            background-color: var(--bg-color); /* Use variable */
+            color: var(--text-color); /* Use variable */
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+            -webkit-font-smoothing: antialiased; /* Better font rendering */
+            -moz-osx-font-smoothing: grayscale; /* Better font rendering */
         }
         .container {
             max-width: 800px;
             margin: 0 auto;
             padding: 1rem;
-            flex-grow: 1; /* Allow container to grow and push footer down */
+            flex-grow: 1;
             display: flex;
             flex-direction: column;
-            justify-content: center; /* Center content vertically */
+            justify-content: center;
         }
         .card {
-            background-color: #2d3748; /* Slightly lighter dark background for cards */
-            border-radius: 0.75rem; /* rounded-xl */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* shadow-md */
+            background-color: var(--card-bg); /* Use variable */
+            color: var(--text-color); /* Ensure card text also uses the variable */
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             padding: 1.5rem;
             margin-bottom: 1.5rem;
+            transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
         }
         .btn-primary {
-            background-color: #f59e0b; /* Amber 500 */
-            color: #1a202c; /* Dark text for contrast */
+            background-color: #f59e0b;
+            color: #1a202c;
             padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem; /* rounded-lg */
+            border-radius: 0.5rem;
             font-weight: 600;
             transition: background-color 0.3s ease;
         }
         .btn-primary:hover {
-            background-color: #d97706; /* Amber 600 */
+            background-color: #d97706;
         }
+
+        /* Input and Textarea Styles (now using CSS variables) */
         input[type="text"],
         input[type="email"],
         textarea {
-            background-color: #4a5568; /* Darker input background */
-            border: 1px solid #6b7280; /* Gray border */
-            color: #e2e8f0;
+            background-color: var(--input-bg); /* Use input background variable */
+            border: 1px solid var(--input-border); /* Use input border variable */
+            color: var(--text-color); /* Use text color variable */
             padding: 0.75rem;
             border-radius: 0.5rem;
             width: 100%;
-            transition: border-color 0.3s ease;
+            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
         }
         input[type="text"]:focus,
         input[type="email"]:focus,
         textarea:focus {
-            border-color: #f59e0b; /* Amber on focus */
+            border-color: #f59e0b; /* Amber on focus - remains constant */
             outline: none;
         }
+
         .section-title {
-            font-size: 2.25rem; /* text-4xl */
-            font-weight: 700; /* font-bold */
-            color: #f59e0b; /* Amber 500 */
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: #f59e0b; /* Amber color will stay constant */
             margin-bottom: 1.5rem;
             text-align: center;
+        }
+
+        /* Navigation Links (using CSS variables for consistency) */
+        nav ul li a {
+            color: var(--text-color); /* Default to text color for links */
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: var(--link-hover-color); /* Use specific hover color */
+        }
+
+        /* Styles for the theme toggle button */
+        #theme-toggle {
+            background-color: var(--header-footer-bg); /* Use header/footer background */
+            color: var(--text-color); /* Use main text color */
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            cursor: pointer;
+            border: 1px solid var(--text-color); /* Subtle border */
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+            margin-left: 1rem; /* Space from nav links */
+        }
+        #theme-toggle:hover {
+            opacity: 0.8; /* Simple hover effect */
         }
     </style>
 </head>
 <body class="antialiased">
 
-    <!-- Header Section -->
-    <header class="bg-gray-900 py-6 shadow-lg">
+    <header class="py-6 shadow-lg transition-colors duration-300"
+            style="background-color: var(--header-footer-bg);">
         <div class="container flex flex-col md:flex-row justify-between items-center">
-            <h1 class="text-3xl font-bold text-white mb-4 md:mb-0">Request Access</h1>
-            <nav>
-                <ul class="flex space-x-6">
-                    <li><a href="index.html" class="text-gray-300 hover:text-white transition duration-300">Back to Home</a></li>
+            <h1 class="text-3xl font-bold mb-4 md:mb-0"
+                style="color: var(--text-color);">Request Access</h1>
+            <nav class="flex items-center space-x-6"> <ul class="flex space-x-6">
+                    <li><a href="index.html" class="text-gray-300 hover:text-white transition duration-300"
+                           style="color: var(--text-color);">Back to Home</a></li>
                 </ul>
+                <button id="theme-toggle" aria-label="Toggle light and dark mode">
+                    Toggle Theme
+                </button>
             </nav>
         </div>
     </header>
 
-    <!-- Request Access Form Section -->
     <section class="py-16 flex-grow">
         <div class="container">
             <h2 class="section-title">Request Access to No Plex Zone</h2>
             <div class="card">
-                <p class="text-lg leading-relaxed mb-6">
+                <p class="text-lg leading-relaxed mb-6"
+                   style="color: var(--text-color);">
                     To gain access to the No Plex Zone server, please fill out the form below.
                     I will review your request and send an invitation to your provided email address as soon as possible.
                 </p>
-                <!-- FormSubmit.co integration -->
                 <form action="https://formsubmit.co/calebwatson317@gmail.com" method="POST" class="space-y-4">
 
-                    <!-- Hidden input to set email subject -->
                     <input type="hidden" name="_subject" value="New Plex Access Request from No Plex Zone!">
-                    <!-- Hidden input to redirect to a thank you page after submission -->
                     <input type="hidden" name="_next" value="https://noplexzone.com/thank-you.html">
-                    <!-- Hidden input to send an autoresponse to the user (optional) -->
                     <input type="hidden" name="_autoresponse" value="Thank you for your request to join No Plex Zone! We've received your request and will review it shortly. You'll receive an invitation or follow-up email soon.">
 
-
                     <div>
-                        <label for="name" class="block text-gray-300 text-sm font-medium mb-2">Your Name</label>
+                        <label for="name" class="block text-sm font-medium mb-2"
+                               style="color: var(--text-color);">Your Name</label>
                         <input type="text" id="name" name="name" placeholder="John Doe" class="block w-full" required>
                     </div>
                     <div>
-                        <label for="email" class="block text-gray-300 text-sm font-medium mb-2">Your Email</label>
+                        <label for="email" class="block text-sm font-medium mb-2"
+                               style="color: var(--text-color);">Your Email</label>
                         <input type="email" id="email" name="email" placeholder="you@example.com" class="block w-full" required>
                     </div>
                     <div>
-                        <label for="message" class="block text-gray-300 text-sm font-medium mb-2">Optional Message</label>
+                        <label for="message" class="block text-sm font-medium mb-2"
+                               style="color: var(--text-color);">Optional Message</label>
                         <textarea id="message" name="message" rows="4" placeholder="Tell me a bit about yourself or why you'd like access..." class="block w-full"></textarea>
                     </div>
                     <button type="submit" class="btn-primary w-full md:w-auto">Submit Request</button>
@@ -122,13 +182,14 @@
         </div>
     </section>
 
-    <!-- Footer Section -->
-    <footer class="bg-gray-900 py-8 text-center text-gray-400">
+    <footer class="py-8 text-center transition-colors duration-300"
+            style="background-color: var(--header-footer-bg); color: var(--text-color);">
         <div class="container">
             <p>&copy; 2025 No Plex Zone. All rights reserved.</p>
-            <p class="mt-2">Powered by Plex.</p>
-        </div>
+            <p class="mt-2">Powered by Plex.</p> </div>
     </footer>
+
+    <script src="script.js"></script>
 
 </body>
 </html>
