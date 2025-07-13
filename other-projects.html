@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Other Projects - No Plex Zone</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables for Light and Dark Mode Colors */
+        :root {
+            --bg-color: #f7fafc;
+            --text-color: #2d3748;
+            --header-footer-bg: #e2e8f0;
+            --card-bg: #ffffff;
+            --project-item-bg: #f0f4f8; /* Similar to device-item-bg for consistent card look */
+            --link-color: #2b6cb0;
+            --link-hover-color: #2c5282;
+            --hero-bg: #edf2f7;
+            --generic-icon-color: #f59e0b;
+        }
+
+        html.dark {
+            --bg-color: #1a202c;
+            --text-color: #e2e8f0;
+            --header-footer-bg: #1f2937;
+            --card-bg: #2d3748;
+            --project-item-bg: #1f2937; /* Similar to device-item-bg for consistent card look */
+            --link-color: #90cdf4;
+            --link-hover-color: #c3dafe;
+            --hero-bg: #1f2937;
+            --generic-icon-color: #f59e0b;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .container {
+            max-width: 1000px; /* Consistent with best-devices.html */
+            margin: 0 auto;
+            padding: 1rem;
+            flex-grow: 1;
+        }
+        .card {
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .btn-primary {
+            background-color: #f59e0b;
+            color: #1a202c;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #d97706;
+        }
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: #f59e0b;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        /* Project Item Specific Styles (adapted from device-item) */
+        .project-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            background-color: var(--project-item-bg); /* Use project item background variable */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .project-item h3 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: #f59e0b; /* Amber for project title */
+            margin-bottom: 0.75rem;
+        }
+        .project-item p {
+            text-align: center; /* Center project descriptions */
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+        .project-item a {
+            margin-top: 1rem;
+        }
+
+        /* Icon/Logo Styling for projects */
+        .project-logo {
+            width: 5rem;
+            height: 5rem;
+            margin-bottom: 1rem;
+            /* Placeholder styles if no specific images/SVGs are provided */
+            color: var(--generic-icon-color);
+            fill: currentColor;
+        }
+
+        /* Navigation Links (using CSS variables for consistency) */
+        nav ul li a {
+            color: var(--text-color);
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: var(--link-hover-color);
+        }
+
+        /* Theme Toggle Button Specific Styles */
+        #theme-toggle {
+            background: none;
+            border: none;
+            padding: 0.5rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        #theme-toggle:hover {
+            transform: scale(1.1);
+        }
+        #theme-toggle svg {
+            width: 1.5rem;
+            height: 1.5rem;
+            stroke: var(--text-color);
+            fill: none;
+            transition: stroke 0.3s ease;
+        }
+        #theme-toggle .icon-moon {
+            display: none;
+        }
+        html.dark #theme-toggle .icon-sun {
+            display: none;
+        }
+        html.dark #theme-toggle .icon-moon {
+            display: inline-block;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="py-6 shadow-lg transition-colors duration-300"
+            style="background-color: var(--header-footer-bg);">
+        <div class="container flex flex-col md:flex-row justify-between items-center">
+            <a href="index.html" class="text-3xl font-bold mb-4 md:mb-0"
+               style="color: var(--text-color);">No Plex Zone</a>
+            <nav class="flex items-center space-x-6">
+                <ul class="flex space-x-6">
+                    <li><a href="best-devices.html" class="text-gray-300 hover:text-white transition duration-300"
+                           style="color: var(--text-color);">Best Devices</a></li>
+                    <li><a href="https://overseerr.noplexzone.com" target="_blank" class="text-gray-300 hover:text-white transition duration-300"
+                           style="color: var(--text-color);">Content Requests</a></li>
+                    <li><a href="https://monitarr.noplexzone.com" target="_blank" class="text-gray-300 hover:text-white transition duration-300"
+                           style="color: var(--text-color);">Download Queue</a></li>
+                    <li><a href="request-access.html" class="text-gray-300 hover:text-white transition duration-300"
+                           style="color: var(--text-color);">Request Access</a></li>
+                    <li><a href="donate.html" class="text-gray-300 hover:text-white transition duration-300"
+                           style="color: var(--text-color);">Donate</a></li>
+                </ul>
+                <button id="theme-toggle" aria-label="Toggle light and dark mode">
+                    <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <section class="py-16 flex-grow">
+        <div class="container">
+            <h2 class="section-title">Other Projects</h2>
+            <div class="card">
+                <p class="text-lg leading-relaxed mb-8 text-center"
+                   style="color: var(--text-color);">
+                    Beyond the main Plex server, I host various other services for friends and family.
+                    Explore these projects for comics, recipes, AI art generation, and more!
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6"> <div class="project-item">
+                        <svg class="project-logo" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="0" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15H9V7h2v10zm4 0h-2V7h2v10z"></path>
+                        </svg>
+                        <h3>Komga (Comic Media Server)</h3>
+                        <p>
+                            A self-hosted comics/mangas/webtoons media server. Organize, read, and stream your digital comic collection.
+                        </p>
+                        <a href="https://komga.noplexzone.com" target="_blank" class="btn-primary">Visit Komga</a>
+                    </div>
+
+                    <div class="project-item">
+                        <svg class="project-logo" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="0" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2c-4.97 0-9 4.03-9 9 0 2.8.96 5.37 2.55 7.37L3 22l3.07-1.55C7.63 21.04 9.7 22 12 22c4.97 0 9-4.03 9-9s-4.03-9-9-9zm0 16c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7zm-1-10H8v6h1V8h2zm3 0h-2v6h2V8z"></path>
+                        </svg>
+                        <h3>Plex Wrapped</h3>
+                        <p>
+                            Get your annual streaming statistics, just like Spotify Wrapped, but for your Plex viewing habits!
+                        </p>
+                        <a href="https://wrapped.noplexzone.com" target="_blank" class="btn-primary">View My Wrapped</a>
+                    </div>
+
+                    <div class="project-item">
+                        <svg class="project-logo" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="0" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6-4c1.66 0 3 1.34 3 3v1H9V7c0-1.66 1.34-3 3-3zm6 16H6V10h12v10z"></path>
+                        </svg>
+                        <h3>Mealie (Meal and Recipe App)</h3>
+                        <p>
+                            Organize your favorite recipes, plan meals, and generate grocery lists with this convenient self-hosted app.
+                        </p>
+                        <a href="https://mealie.noplexzone.com" target="_blank" class="btn-primary">Visit Mealie</a>
+                    </div>
+
+                    <div class="project-item">
+                        <svg class="project-logo" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="0" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15c-.55 0-1-.45-1-1v-4c0-.55.45-1 1-1h2c.55 0 1 .45 1 1v4c0 .55-.45 1-1 1h-2zm1-9c-.55 0-1-.45-1-1V5c0-.55.45-1 1-1s1 .45 1 1v2c0 .55-.45 1-1 1z"></path>
+                        </svg>
+                        <h3>InvokeAI (AI Art Generator)</h3>
+                        <p>
+                            Experiment with cutting-edge artificial intelligence to generate unique images and artwork from text prompts.
+                        </p>
+                        <a href="https://invoke.noplexzone.com" target="_blank" class="btn-primary">Start Generating</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-8 text-center transition-colors duration-300"
+            style="background-color: var(--header-footer-bg); color: var(--text-color);">
+        <div class="container">
+            <p>&copy; 2025 No Plex Zone. All rights reserved.</p>
+            <p class="mt-2">Powered by Caleb Watson.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
