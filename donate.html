@@ -128,20 +128,14 @@
         <div class="container flex flex-col md:flex-row justify-between items-center">
             <a href="index.html" class="text-3xl font-bold mb-4 md:mb-0"
                             style="color: var(--text-color);">No Plex Zone</a>
-            <nav class="flex items-center space-x-6">
-                <ul class="flex space-x-6">
-                    <li><a href="index.html" class="text-gray-300 hover:text-white transition duration-300"
-                        style="color: var(--text-color);">Back to Home</a></li>       
-                    <li><a href="best-devices.html" class="text-gray-300 hover:text-white transition duration-300"
-                        style="color: var(--text-color);">Best Devices</a></li>
-                    <li><a href="https://overseerr.noplexzone.com" target="_blank" class="text-gray-300 hover:text-white transition duration-300"
-                        style="color: var(--text-color);">Content Requests</a></li>
-                    <li><a href="https://monitarr.noplexzone.com" target="_blank" class="text-gray-300 hover:text-white transition duration-300"
-                        style="color: var(--text-color);">Download Queue</a></li>
-                    <li><a href="other-projects.html" class="text-gray-300 hover:text-white transition duration-300"
-                        style="color: var(--text-color);">Other Projects</a></li>
-                    <li><a href="request-access.html" class="text-gray-300 hover:text-white transition duration-300"
-                        style="color: var(--text-color);">Request Access</a></li>
+            <nav class="flex items-center justify-end gap-4 w-full">
+                <ul class="hidden md:flex space-x-6">
+                    <li><a href="index.html" style="color: var(--text-color);">Back to Home</a></li>
+                    <li><a href="best-devices.html" style="color: var(--text-color);">Best Devices</a></li>
+                    <li><a href="https://overseerr.noplexzone.com" target="_blank" style="color: var(--text-color);">Content Requests</a></li>
+                    <li><a href="https://monitarr.noplexzone.com" target="_blank" style="color: var(--text-color);">Download Queue</a></li>
+                    <li><a href="other-projects.html" style="color: var(--text-color);">Other Projects</a></li>
+                    <li><a href="request-access.html" style="color: var(--text-color);">Request Access</a></li>
                 </ul>
                 <button id="theme-toggle" aria-label="Toggle light and dark mode">
                     <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun">
@@ -159,10 +153,30 @@
                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                     </svg>
                 </button>
+                <button id="hamburger-button" class="hamburger-button md:hidden" aria-label="Open mobile menu">
+                    <span class="line"></span>
+                    <span class="line"></span>
+                    <span class="line"></span>
+                </button>
             </nav>
         </div>
     </header>
 
+    <div id="mobile-menu" class="mobile-menu">
+        <button id="mobile-menu-close" class="mobile-menu-close" aria-label="Close mobile menu">
+            &times;
+        </button>
+        <ul>
+            <li><a href="index.html" style="color: var(--text-color);">Back to Home</a></li>
+            <li><a href="best-devices.html" style="color: var(--text-color);">Best Devices</a></li>
+            <li><a href="https://overseerr.noplexzone.com" target="_blank" style="color: var(--text-color);">Content Requests</a></li>
+            <li><a href="https://monitarr.noplexzone.com" target="_blank" style="color: var(--text-color);">Download Queue</a></li>
+            <li><a href="other-projects.html" style="color: var(--text-color);">Other Projects</a></li>
+            <li><a href="request-access.html" style="color: var(--text-color);">Request Access</a></li>
+        </ul>
+    </div>
+
+    
     <section class="py-16 flex-grow">
         <div class="container">
             <h2 class="section-title">Support No Plex Zone</h2>
