@@ -200,6 +200,14 @@
             transition: all 0.3s ease;
         }
 
+        /* Add anywhere after your current .hamburger-button styles */
+        .hamburger-button.is-active .line {
+            opacity: 0;           /* hide the bars */
+            transform: scaleX(0); /* optional: shrink them for a smoother feel */
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+
         /* Close Button inside Mobile Menu */
         .mobile-menu-close {
             background: none;
