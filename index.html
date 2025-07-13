@@ -227,6 +227,14 @@
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
+                position: static;
+            }
+
+            header .container a.text-3xl { /* Reset title for desktop */
+                position: static;
+                transform: none;
+                width: auto;
+                z-index: auto;
             }
             
             /* Hide hamburger on desktop */
@@ -249,10 +257,22 @@
             header .container {
                 display: flex; /* Set display to flex */
                 flex-direction: row; /* Keep items in a row */
-                justify-content: space-between; /* Space out title and nav */
-                align-items: center; /* Vertically align them */
+                align-items: center;
+                position: relative;
+                justify-content: flex-end;
             }
 
+             /* Style for the "No Plex Zone" title on mobile */
+            header .container a.text-3xl { /* Target the logo link specifically */
+                position: absolute; /* Take it out of flow */
+                left: 50%; /* Move to the center */
+                transform: translateX(-50%); /* Adjust for its own width to truly center */
+                margin-bottom: 0 !important; /* Ensure no residual margin */
+                width: max-content; /* Ensure it only takes up content width */
+                min-width: 0; /* Override any potential minimum widths */
+                z-index: 1; /* Ensure it's above other elements if needed */
+            } 
+            
             .hamburger-button {
                 display: block !important;
             }
@@ -266,7 +286,8 @@
             header .container nav {
                 display: flex;
                 align-items: center;
-                justify-content: flex-end; /* Push hamburger/toggle to right */
+                flex-grow: 0;
+                z-index: 2;
             }
         }
     </style>
@@ -275,7 +296,7 @@
 
     <header class="bg-gray-900 py-6 shadow-lg transition-colors duration-300"
             style="background-color: var(--header-footer-bg);">
-        <div class="container">
+        <div class="container flex items-center justify-between">
             <a href="index.html" class="text-3xl font-bold" style="color: var(--text-color);">No Plex Zone</a>
             <nav class="flex items-center justify-end gap-4">
                 <ul class="hidden md:flex space-x-6">
