@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" class="dark"> <head>
+<html lang="en" class="dark">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Request Access to No Plex Zone</title>
@@ -111,21 +112,37 @@
             color: var(--link-hover-color); /* Use specific hover color */
         }
 
-        /* Styles for the theme toggle button */
+        /* ===>>> MISSING CSS BLOCK ADDED HERE <<<=== */
+        /* Theme Toggle Button Specific Styles */
         #theme-toggle {
-            background-color: var(--header-footer-bg); /* Use header/footer background */
-            color: var(--text-color); /* Use main text color */
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            font-weight: 500;
+            background: none; /* Make background transparent for icon */
+            border: none; /* Remove border for icon */
+            padding: 0.5rem; /* Adjust padding for icon */
             cursor: pointer;
-            border: 1px solid var(--text-color); /* Subtle border */
-            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-            margin-left: 1rem; /* Space from nav links */
+            transition: transform 0.3s ease; /* Smooth hover effect */
         }
         #theme-toggle:hover {
-            opacity: 0.8; /* Simple hover effect */
+            transform: scale(1.1); /* Slightly enlarge on hover */
         }
+        #theme-toggle svg {
+            width: 1.5rem; /* Icon size */
+            height: 1.5rem;
+            stroke: var(--text-color); /* Icon stroke matches text color */
+            fill: none; /* Default to no fill for outline icons */
+            transition: stroke 0.3s ease; /* Smooth color transition for icon */
+        }
+        /* Hide the moon icon by default */
+        #theme-toggle .icon-moon {
+            display: none;
+        }
+        /* Show the moon icon and hide the sun icon when in dark mode */
+        html.dark #theme-toggle .icon-sun {
+            display: none;
+        }
+        html.dark #theme-toggle .icon-moon {
+            display: inline-block; /* Show moon icon */
+        }
+        /* ===>>> END OF MISSING CSS BLOCK <<<=== */
     </style>
 </head>
 <body class="antialiased">
@@ -135,7 +152,8 @@
         <div class="container flex flex-col md:flex-row justify-between items-center">
             <h1 class="text-3xl font-bold mb-4 md:mb-0"
                 style="color: var(--text-color);">Request Access</h1>
-            <nav class="flex items-center space-x-6"> <ul class="flex space-x-6">
+            <nav class="flex items-center space-x-6">
+                <ul class="flex space-x-6">
                     <li><a href="index.html" class="text-gray-300 hover:text-white transition duration-300"
                            style="color: var(--text-color);">Back to Home</a></li>
                 </ul>
@@ -199,7 +217,8 @@
             style="background-color: var(--header-footer-bg); color: var(--text-color);">
         <div class="container">
             <p>&copy; 2025 No Plex Zone. All rights reserved.</p>
-            <p class="mt-2">Powered by Plex.</p> </div>
+            <p class="mt-2">Powered by Plex.</p>
+        </div>
     </footer>
 
     <script src="script.js"></script>
