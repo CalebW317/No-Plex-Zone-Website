@@ -45,19 +45,24 @@ document.addEventListener('DOMContentLoaded', () => {
     if (hamburgerButton && mobileMenu && mobileMenuCloseButton) {
         hamburgerButton.addEventListener('click', () => {
             mobileMenu.classList.add('is-open');
+            hamburgerButton.classList.add('is-active'); // Add this line
             document.body.style.overflow = 'hidden'; // Prevent scrolling background
         });
 
+
         mobileMenuCloseButton.addEventListener('click', () => {
             mobileMenu.classList.remove('is-open');
+            hamburgerButton.classList.remove('is-active'); // Add this line
             document.body.style.overflow = ''; // Restore scrolling
         });
 
+
         // Close mobile menu when a link is clicked
         mobileMenuLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('is-open');
-                document.body.style.overflow = '';
+           link.addEventListener('click', () => {
+               mobileMenu.classList.remove('is-open');
+               hamburgerButton.classList.remove('is-active'); // Add this line
+               document.body.style.overflow = '';
             });
         });
     }
