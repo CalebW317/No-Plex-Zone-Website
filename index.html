@@ -1,21 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" class="dark"> <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>No Plex Zone</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts - Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        /* Custom CSS Variables for light/dark mode */
+        :root {
+            --light-bg: #f0f0f0;
+            --light-text: #333;
+            --light-card-bg: #ffffff;
+            --light-header-footer-bg: #e2e8f0;
+            --light-hero-bg: #f7fafc;
+            --light-link-hover: #4a5568; /* gray-700 */
+        }
+
+        .dark {
+            --light-bg: #1a202c; /* Current dark background */
+            --light-text: #e2e8f0; /* Current light text */
+            --light-card-bg: #2d3748; /* Current card background */
+            --light-header-footer-bg: #1a202c; /* Current header/footer bg */
+            --light-hero-bg: #1f2937; /* Similar to current hero bg */
+            --light-link-hover: #cbd5e0; /* gray-300 */
+        }
+
+        /* Apply variables to your custom CSS classes */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #1a202c; /* Dark background */
-            color: #e2e8f0; /* Light text */
+            background-color: var(--light-bg); /* Use variable */
+            color: var(--light-text); /* Use variable */
             display: flex;
             flex-direction: column;
-            min-height: 100vh; /* Ensure full viewport height */
+            min-height: 100vh;
+            transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
         }
         .container {
             max-width: 1200px;
@@ -23,17 +41,18 @@
             padding: 1rem;
         }
         .card {
-            background-color: #2d3748; /* Slightly lighter dark background for cards */
-            border-radius: 0.75rem; /* rounded-xl */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* shadow-md */
+            background-color: var(--light-card-bg); /* Use variable */
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             padding: 1.5rem;
             margin-bottom: 1.5rem;
+            transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
         }
         .btn-primary {
-            background-color: #f59e0b; /* Amber 500 */
-            color: #1a202c; /* Dark text for contrast */
+            background-color: #f59e0b; /* Amber 500 - keep consistent for buttons */
+            color: #1a202c;
             padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem; /* rounded-lg */
+            border-radius: 0.5rem;
             font-weight: 600;
             transition: background-color 0.3s ease;
         }
@@ -41,70 +60,108 @@
             background-color: #d97706; /* Amber 600 */
         }
         .section-title {
-            font-size: 2.25rem; /* text-4xl */
-            font-weight: 700; /* font-bold */
-            color: #f59e0b; /* Amber 500 */
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: #f59e0b;
             margin-bottom: 1.5rem;
             text-align: center;
         }
         .main-content {
-            flex-grow: 1; /* Allow main content to expand and push footer down */
+            flex-grow: 1;
+        }
+
+        /* Styles for the theme toggle button */
+        #theme-toggle {
+            background-color: #4a5568; /* gray-700 */
+            color: #e2e8f0; /* light text */
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        #theme-toggle:hover {
+            background-color: #2d3748; /* gray-800 */
+        }
+        .dark #theme-toggle {
+             background-color: #6b7280; /* gray-600 in dark mode */
+             color: #1a202c; /* dark text */
+        }
+        .dark #theme-toggle:hover {
+             background-color: #4a5568; /* gray-700 in dark mode */
+        }
+
+        /* Server Status Indicator styles */
+        #plex-status-indicator {
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+        .status-online {
+            color: #10b981; /* Green 500 */
+        }
+        .status-offline {
+            color: #ef4444; /* Red 500 */
+        }
+        .status-checking, .status-error {
+            color: #f59e0b; /* Amber 500 */
         }
     </style>
 </head>
 <body class="antialiased">
 
-    <!-- Header Section -->
-    <header class="bg-gray-900 py-6 shadow-lg">
+    <header class="bg-gray-900 dark:bg-gray-800 py-6 shadow-lg transition-colors duration-300">
         <div class="container flex flex-col md:flex-row justify-between items-center">
-            <h1 class="text-3xl font-bold text-white mb-4 md:mb-0">No Plex Zone</h1>
-            <nav>
-                <ul class="flex space-x-6">
-                    <li><a href="request-access.html" class="text-gray-300 hover:text-white transition duration-300">Request Access</a></li>
-                    <li><a href="https://overseerr.noplexzone.com" target="_blank" class="text-gray-300 hover:text-white transition duration-300">Content Requests</a></li>
-                    <li><a href="best-devices.html" class="text-gray-300 hover:text-white transition duration-300">Best Devices</a></li>
-                    <li><a href="donate.html" class="text-gray-300 hover:text-white transition duration-300">Donate</a></li>
+            <h1 class="text-3xl font-bold text-white dark:text-gray-100 mb-4 md:mb-0">No Plex Zone</h1>
+            <nav class="flex items-center space-x-6"> <ul class="flex space-x-6">
+                    <li><a href="request-access.html" class="text-gray-300 hover:text-white dark:hover:text-gray-100 transition duration-300">Request Access</a></li>
+                    <li><a href="https://overseerr.noplexzone.com" target="_blank" class="text-gray-300 hover:text-white dark:hover:text-gray-100 transition duration-300">Content Requests</a></li>
+                    <li><a href="best-devices.html" class="text-gray-300 hover:text-white dark:hover:text-gray-100 transition duration-300">Best Devices</a></li>
+                    <li><a href="donate.html" class="text-gray-300 hover:text-white dark:hover:text-gray-100 transition duration-300">Donate</a></li>
                 </ul>
+                <button id="theme-toggle" aria-label="Toggle light and dark mode">
+                    Toggle Theme
+                </button>
             </nav>
         </div>
     </header>
 
     <main class="main-content">
-        <!-- Hero Section -->
-        <section class="bg-gray-800 py-20 text-center">
+        <section class="bg-gray-800 dark:bg-gray-700 py-20 text-center transition-colors duration-300">
             <div class="container">
-                <h2 class="text-5xl font-extrabold text-white mb-6">Your Ultimate Entertainment Hub</h2>
-                <p class="text-xl text-gray-300 mb-8">Stream your favorite movies, TV shows, and more all from one central place.</p>
+                <h2 class="text-5xl font-extrabold text-white dark:text-gray-100 mb-6">Your Ultimate Entertainment Hub</h2>
+                <p class="text-xl text-gray-300 dark:text-gray-200 mb-8">Stream your favorite movies, TV shows, and more all from one central place.</p>
                 <a href="request-access.html" class="btn-primary inline-block">Get Started Now!</a>
             </div>
         </section>
 
-        <!-- About Plex Server Section -->
         <section id="about" class="py-16">
             <div class="container">
                 <h2 class="section-title">About No Plex Zone</h2>
                 <div class="card">
-                    <p class="text-lg leading-relaxed mb-4">
-                        Welcome to my personal Plex server! This server is a curated collection of movies, TV shows, and more,
+                    <p class="text-lg leading-relaxed mb-4 text-gray-300 dark:text-gray-200"> Welcome to my personal Plex server! This server is a curated collection of movies, TV shows, and more,
                         all available for you to stream on demand. I strive to keep the library updated with high-quality content
                         and ensure a smooth streaming experience for all users.
                     </p>
-                    <p class="text-lg leading-relaxed">
-                        Plex allows you to organize and stream your media library to any device, anywhere. Enjoy seamless playback,
+                    <p class="text-lg leading-relaxed text-gray-300 dark:text-gray-200"> Plex allows you to organize and stream your media library to any device, anywhere. Enjoy seamless playback,
                         track your watch history, and discover new content with ease.
                     </p>
+                    <div class="mt-8 text-xl font-semibold">
+                        Plex Server Status: <span id="plex-status-indicator" class="status-checking">Checking...</span>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Footer Section -->
-    <footer class="bg-gray-900 py-8 text-center text-gray-400">
+    <footer class="bg-gray-900 dark:bg-gray-800 py-8 text-center text-gray-400 dark:text-gray-300 transition-colors duration-300">
         <div class="container">
             <p>&copy; 2025 No Plex Zone. All rights reserved.</p>
             <p class="mt-2">Powered by Caleb Watson.</p>
         </div>
     </footer>
+
+    <script src="script.js"></script>
 
 </body>
 </html>
