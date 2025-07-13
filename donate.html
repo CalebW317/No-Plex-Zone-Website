@@ -187,7 +187,10 @@
     .hamburger-button.is-active .line {
       opacity: 0;
       transform: scaleX(0);
+      pointer-events: none;       /* Prevent hover or interactions */
+      background-color: transparent !important;  /* Force line to fully disappear */
     }
+
 
     .mobile-menu-close {
       background: none;
