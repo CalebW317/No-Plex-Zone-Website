@@ -118,6 +118,116 @@
         html.dark #theme-toggle .icon-moon {
             display: inline-block; /* Show moon icon */
         }
+
+        /* ===>>> NEW MOBILE NAVIGATION CSS <<<=== */
+
+/* Mobile Menu Container Styling */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 70%;
+    max-width: 300px;
+    height: 100%;
+    background-color: var(--mobile-menu-bg);
+    padding: 2rem 1.5rem;
+    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.2);
+    transition: right 0.3s ease-in-out;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.mobile-menu.is-open {
+    right: 0;
+}
+
+.mobile-menu ul {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.mobile-menu ul li {
+    margin-bottom: 1.5rem;
+    width: 100%;
+    text-align: left;
+}
+
+.mobile-menu ul li a {
+    font-size: 1.25rem;
+    font-weight: 600;
+    display: block;
+    padding: 0.5rem 0;
+}
+
+/* Hamburger Icon Styling */
+.hamburger-button {
+    display: block;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 1001;
+    margin-left: 1rem;
+}
+
+.hamburger-button .line {
+    display: block;
+    width: 28px;
+    height: 3px;
+    background-color: var(--text-color);
+    margin: 6px 0;
+    transition: all 0.3s ease;
+}
+
+.hamburger-button.is-active .line {
+    opacity: 0;
+    transform: scaleX(0);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+/* Close Button inside Mobile Menu */
+.mobile-menu-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    align-self: flex-end;
+    font-size: 2rem;
+    line-height: 1;
+    color: var(--text-color);
+    padding: 0.5rem;
+}
+
+/* Media Queries */
+@media (min-width: 768px) {
+    .hamburger-button {
+        display: none;
+    }
+    .mobile-menu {
+        display: none;
+    }
+    header .container nav ul {
+        display: flex;
+    }
+}
+
+@media (max-width: 767px) {
+    .hamburger-button {
+        display: block !important;
+    }
+    header .container nav ul {
+        display: none;
+    }
+    header .container nav {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        flex-grow: 1;
+    }
+}
         /* ===>>> END OF MISSING CSS BLOCK <<<=== */
     </style>
 </head>
