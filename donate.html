@@ -7,43 +7,41 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* CSS Variables for Light and Dark Mode Colors */
         :root {
-            /* Light Mode Defaults */
-            --bg-color: #f7fafc; /* Tailwind gray-50 - very light background */
-            --text-color: #2d3748; /* Tailwind gray-800 - dark text for readability */
-            --header-footer-bg: #e2e8f0; /* Tailwind gray-200 */
-            --card-bg: #ffffff; /* Pure white for cards in light mode */
-            --link-color: #2b6cb0; /* Tailwind blue-700 */
-            --link-hover-color: #2c5282; /* Tailwind blue-800 */
-            --hero-bg: #edf2f7; /* Tailwind gray-100 */
+            --bg-color: #f7fafc;
+            --text-color: #2d3748;
+            --header-footer-bg: #e2e8f0;
+            --card-bg: #ffffff;
+            --link-color: #2b6cb0;
+            --link-hover-color: #2c5282;
+            --hero-bg: #edf2f7;
+            --mobile-menu-bg: #e2e8f0;
         }
 
-        /* Dark Mode Overrides (when html has class="dark") */
-        html.dark { /* Use html.dark instead of just .dark for higher specificity */
-            --bg-color: #1a202c; /* Tailwind gray-900 - your original dark background */
-            --text-color: #e2e8f0; /* Tailwind gray-200 - light text */
-            --header-footer-bg: #1f2937; /* Tailwind gray-800 */
-            --card-bg: #2d3748; /* Tailwind gray-700 - your original card background */
-            --link-color: #90cdf4; /* Tailwind blue-300 */
-            --link-hover-color: #c3dafe; /* Tailwind blue-200 */
-            --hero-bg: #1f2937; /* Tailwind gray-800 */
+        html.dark {
+            --bg-color: #1a202c;
+            --text-color: #e2e8f0;
+            --header-footer-bg: #1f2937;
+            --card-bg: #2d3748;
+            --link-color: #90cdf4;
+            --link-hover-color: #c3dafe;
+            --hero-bg: #1f2937;
+            --mobile-menu-bg: #1f2937;
         }
 
-        /* Apply variables to your custom CSS classes */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color); /* Use variable */
-            color: var(--text-color); /* Use variable */
+            background-color: var(--bg-color);
+            color: var(--text-color);
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
-            -webkit-font-smoothing: antialiased; /* Better font rendering */
-            -moz-osx-font-smoothing: grayscale; /* Better font rendering */
+            transition: background-color 0.3s ease, color 0.3s ease;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
         .container {
-            max-width: 800px; /* Specific to donate.html */
+            max-width: 800px;
             margin: 0 auto;
             padding: 1rem;
             flex-grow: 1;
@@ -52,194 +50,74 @@
             justify-content: center;
         }
         .card {
-            background-color: var(--card-bg); /* Use variable */
-            color: var(--text-color); /* Ensure card text also uses the variable */
-            border-radius: 0.75rem; /* rounded-xl */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* shadow-md */
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             padding: 1.5rem;
             margin-bottom: 1.5rem;
-            transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
         .btn-primary {
-            background-color: #f59e0b; /* Amber 500 - keep consistent for buttons */
-            color: #1a202c; /* Dark text for contrast */
+            background-color: #f59e0b;
+            color: #1a202c;
             padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem; /* rounded-lg */
+            border-radius: 0.5rem;
             font-weight: 600;
             transition: background-color 0.3s ease;
         }
         .btn-primary:hover {
-            background-color: #d97706; /* Amber 600 */
+            background-color: #d97706;
         }
         .section-title {
-            font-size: 2.25rem; /* text-4xl */
-            font-weight: 700; /* font-bold */
-            color: #f59e0b; /* Amber 500 - this amber color will stay constant */
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: #f59e0b;
             margin-bottom: 1.5rem;
             text-align: center;
         }
-
-        /* Navigation Links (using CSS variables for consistency) */
         nav ul li a {
-            color: var(--text-color); /* Default to text color for links */
+            color: var(--text-color);
             transition: color 0.3s ease;
         }
         nav ul li a:hover {
-            color: var(--link-hover-color); /* Use specific hover color */
+            color: var(--link-hover-color);
         }
 
-        /* ===>>> MISSING CSS BLOCK ADDED HERE <<<=== */
-        /* Theme Toggle Button Specific Styles */
         #theme-toggle {
-            background: none; /* Make background transparent for icon */
-            border: none; /* Remove border for icon */
-            padding: 0.5rem; /* Adjust padding for icon */
+            background: none;
+            border: none;
+            padding: 0.5rem;
             cursor: pointer;
-            transition: transform 0.3s ease; /* Smooth hover effect */
+            transition: transform 0.3s ease;
         }
         #theme-toggle:hover {
-            transform: scale(1.1); /* Slightly enlarge on hover */
+            transform: scale(1.1);
         }
         #theme-toggle svg {
-            width: 1.5rem; /* Icon size */
+            width: 1.5rem;
             height: 1.5rem;
-            stroke: var(--text-color); /* Icon stroke matches text color */
-            fill: none; /* Default to no fill for outline icons */
-            transition: stroke 0.3s ease; /* Smooth color transition for icon */
+            stroke: var(--text-color);
+            fill: none;
+            transition: stroke 0.3s ease;
         }
-        /* Hide the moon icon by default */
         #theme-toggle .icon-moon {
             display: none;
         }
-        /* Show the moon icon and hide the sun icon when in dark mode */
         html.dark #theme-toggle .icon-sun {
             display: none;
         }
         html.dark #theme-toggle .icon-moon {
-            display: inline-block; /* Show moon icon */
+            display: inline-block;
         }
-
-        /* ===>>> NEW MOBILE NAVIGATION CSS <<<=== */
-
-/* Mobile Menu Container Styling */
-.mobile-menu {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 70%;
-    max-width: 300px;
-    height: 100%;
-    background-color: var(--mobile-menu-bg);
-    padding: 2rem 1.5rem;
-    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.2);
-    transition: right 0.3s ease-in-out;
-    z-index: 1000;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.mobile-menu.is-open {
-    right: 0;
-}
-
-.mobile-menu ul {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    margin-top: 2rem;
-}
-
-.mobile-menu ul li {
-    margin-bottom: 1.5rem;
-    width: 100%;
-    text-align: left;
-}
-
-.mobile-menu ul li a {
-    font-size: 1.25rem;
-    font-weight: 600;
-    display: block;
-    padding: 0.5rem 0;
-}
-
-/* Hamburger Icon Styling */
-.hamburger-button {
-    display: block;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0.5rem;
-    z-index: 1001;
-    margin-left: 1rem;
-}
-
-.hamburger-button .line {
-    display: block;
-    width: 28px;
-    height: 3px;
-    background-color: var(--text-color);
-    margin: 6px 0;
-    transition: all 0.3s ease;
-}
-
-.hamburger-button.is-active .line {
-    opacity: 0;
-    transform: scaleX(0);
-    transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
-/* Close Button inside Mobile Menu */
-.mobile-menu-close {
-    background: none;
-    border: none;
-    cursor: pointer;
-    align-self: flex-end;
-    font-size: 2rem;
-    line-height: 1;
-    color: var(--text-color);
-    padding: 0.5rem;
-}
-
-/* Media Queries */
-@media (min-width: 768px) {
-    .hamburger-button {
-        display: none;
-    }
-    .mobile-menu {
-        display: none;
-    }
-    header .container nav ul {
-        display: flex;
-    }
-}
-
-@media (max-width: 767px) {
-    .hamburger-button {
-        display: block !important;
-    }
-    header .container nav ul {
-        display: none;
-    }
-    header .container nav {
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        flex-grow: 1;
-    }
-}
-        /* ===>>> END OF MISSING CSS BLOCK <<<=== */
     </style>
 </head>
 <body class="antialiased">
-
-    <header class="py-6 shadow-lg transition-colors duration-300"
-            style="background-color: var(--header-footer-bg);">
+    <header class="py-6 shadow-lg transition-colors duration-300" style="background-color: var(--header-footer-bg);">
         <div class="container flex flex-col md:flex-row justify-between items-center">
-            <a href="index.html" class="text-3xl font-bold mb-4 md:mb-0"
-                            style="color: var(--text-color);">No Plex Zone</a>
-            <nav class="flex items-center justify-end gap-4 w-full">
-                <ul class="hidden md:flex space-x-6">
+            <a href="index.html" class="text-3xl font-bold mb-4 md:mb-0" style="color: var(--text-color);">No Plex Zone</a>
+            <nav class="flex items-center space-x-6">
+                <ul class="flex space-x-6">
                     <li><a href="index.html" style="color: var(--text-color);">Back to Home</a></li>
                     <li><a href="best-devices.html" style="color: var(--text-color);">Best Devices</a></li>
                     <li><a href="https://overseerr.noplexzone.com" target="_blank" style="color: var(--text-color);">Content Requests</a></li>
@@ -248,7 +126,7 @@
                     <li><a href="request-access.html" style="color: var(--text-color);">Request Access</a></li>
                 </ul>
                 <button id="theme-toggle" aria-label="Toggle light and dark mode">
-                    <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun">
+                    <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="12" cy="12" r="5"></circle>
                         <line x1="12" y1="1" x2="12" y2="3"></line>
                         <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -259,39 +137,19 @@
                         <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
                         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                     </svg>
-                    <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon">
-                       <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                     </svg>
-                </button>
-                <button id="hamburger-button" class="hamburger-button md:hidden" aria-label="Open mobile menu">
-                    <span class="line"></span>
-                    <span class="line"></span>
-                    <span class="line"></span>
                 </button>
             </nav>
         </div>
     </header>
 
-    <div id="mobile-menu" class="mobile-menu">
-        <button id="mobile-menu-close" class="mobile-menu-close" aria-label="Close mobile menu">
-            &times;
-        </button>
-        <ul>
-            <li><a href="index.html" style="color: var(--text-color);">Back to Home</a></li>
-            <li><a href="best-devices.html" style="color: var(--text-color);">Best Devices</a></li>
-            <li><a href="https://overseerr.noplexzone.com" target="_blank" style="color: var(--text-color);">Content Requests</a></li>
-            <li><a href="https://monitarr.noplexzone.com" target="_blank" style="color: var(--text-color);">Download Queue</a></li>
-            <li><a href="other-projects.html" style="color: var(--text-color);">Other Projects</a></li>
-            <li><a href="request-access.html" style="color: var(--text-color);">Request Access</a></li>
-        </ul>
-    </div>
-    
     <section class="py-16 flex-grow">
         <div class="container">
             <h2 class="section-title">Support No Plex Zone</h2>
             <div class="card text-center">
-                <p class="text-lg leading-relaxed mb-6"
-                   style="color: var(--text-color);">
+                <p class="text-lg leading-relaxed mb-6" style="color: var(--text-color);">
                     Maintaining a high-quality Plex server with a vast library requires resources.
                     If you enjoy the content and the service, consider supporting the server's running costs
                     and future content acquisitions. Any contribution is greatly appreciated!
@@ -304,8 +162,7 @@
         </div>
     </section>
 
-    <footer class="py-8 text-center transition-colors duration-300"
-            style="background-color: var(--header-footer-bg); color: var(--text-color);">
+    <footer class="py-8 text-center transition-colors duration-300" style="background-color: var(--header-footer-bg); color: var(--text-color);">
         <div class="container">
             <p>&copy; 2025 No Plex Zone. All rights reserved.</p>
             <p class="mt-2">Powered by Caleb Watson.</p>
@@ -313,6 +170,5 @@
     </footer>
 
     <script src="script.js"></script>
-
 </body>
 </html>
