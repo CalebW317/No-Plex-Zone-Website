@@ -134,9 +134,9 @@
             color: #f59e0b; /* Amber 500 */
         }
 
-        /* ===>>> NEW MOBILE NAVIGATION CSS <<<=== */
+        /* === NEW MOBILE/UNIVERSAL NAVIGATION CSS === */
 
-        /* Mobile Menu Container Styling */
+        /* Mobile Menu Container Styling (now universal) */
         .mobile-menu {
             position: fixed; /* Fixed position so it floats above content */
             top: 0;
@@ -180,9 +180,9 @@
             padding: 0.5rem 0;
         }
 
-        /* Hamburger Icon Styling */
+        /* Hamburger Icon Styling (now universal) */
         .hamburger-button {
-            display: block; /* Show on mobile by default */
+            display: block; /* Always show the hamburger button */
             background: none;
             border: none;
             cursor: pointer;
@@ -200,13 +200,11 @@
             transition: all 0.3s ease;
         }
 
-        /* Add anywhere after your current .hamburger-button styles */
         .hamburger-button.is-active .line {
-            opacity: 0;           /* hide the bars */
-            transform: scaleX(0); /* optional: shrink them for a smoother feel */
+            opacity: 0;
+            transform: scaleX(0);
             transition: opacity 0.2s ease, transform 0.2s ease;
         }
-
 
         /* Close Button inside Mobile Menu */
         .mobile-menu-close {
@@ -220,73 +218,29 @@
             padding: 0.5rem;
         }
 
-        /* Media Queries for Desktop vs Mobile */
-        @media (min-width: 768px) { /* md breakpoint in Tailwind */
-            /* Ensure header container is flex on desktop */
-            header .container {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            }
-
-            /* Hide the spacer on desktop */
-            .header-spacer {
-                display: none;
-            }
-
-            header .container a.text-3xl { /* Reset title for desktop */
-                margin-left: 0;
-                margin-right: 0;
-                text-align: left;
-            }
-            
-            /* Hide hamburger on desktop */
-            .hamburger-button {
-                display: none;
-            }
-
-            /* Hide mobile menu container on desktop */
-            .mobile-menu {
-                display: none;
-            }
-
-            /* Show desktop nav links */
-            header .container nav ul {
-                display: flex; /* Ensure desktop nav list is flex */
-            }
+        /* Universal Header Layout */
+        header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between; /* Space out elements */
         }
 
-        @media (max-width: 767px) { /* Below md breakpoint */
-            header .container {
-                display: flex; /* Set display to flex */
-                flex-direction: row; /* Keep items in a row */
-                align-items: center;
-            }
-
-             /* Style for the "No Plex Zone" title on mobile */
-            header .container a.text-3xl {
-                margin-right: auto; /* Push itself and subsequent elements to the right */
-                margin-left: auto; /* Push itself and preceding elements to the left */
-                text-align: center; /* Ensures the text is visually centered within its own space */
-                flex-shrink: 0; /* Prevent the title from shrinking too much */
-            }
-            
-            .hamburger-button {
-                display: block !important;
-            }
-            
-            /* Hide desktop nav links on mobile */
-            header .container nav ul {
-                display: none;
-            }
-
-            /* Adjust header alignment for mobile: space between logo/title and hamburger/toggle */
-            header .container nav {
-                display: flex;
-                align-items: center;
-                flex-shrink: 0;
-            }
+        header .container a.text-3xl {
+            /* This will make the title center itself between the left-aligned elements (nothing in this case)
+               and the right-aligned elements (theme toggle and hamburger) */
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            flex-shrink: 0; /* Prevent the title from shrinking too much */
         }
+
+        /* Ensure the right-side elements (theme toggle, hamburger) stay together */
+        header .container nav {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0; /* Prevent them from shrinking */
+        }
+
     </style>
 </head>
 <body class="antialiased">
@@ -295,38 +249,24 @@
             style="background-color: var(--header-footer-bg);">
         <div class="container flex items-center justify-between">
             <a href="index.html" class="text-3xl font-bold" style="color: var(--text-color);">No Plex Zone</a>
-            <nav class="flex items-center justify-end gap-4">
-                <ul class="hidden md:flex space-x-6">
-                    <li><a href="best-devices.html" class="text-gray-300 hover:text-white transition duration-300"
-                        style="color: var(--text-color);">Best Devices</a></li>
-                    <li><a href="other-projects.html" class="text-gray-300 hover:text-white transition duration-300"
-                        style="color: var(--text-color);">Other Projects</a></li>
-                    <li><a href="https://overseerr.noplexzone.com" target="_blank" class="text-gray-300 hover:text-white transition duration-300"
-                        style="color: var(--text-color);">Content Requests</a></li>
-                    <li><a href="https://monitarr.noplexzone.com" target="_blank" class="text-gray-300 hover:text-white transition duration-300"
-                        style="color: var(--text-color);">Download Queue</a></li>
-                    <li><a href="request-access.html" class="text-gray-300 hover:text-white transition duration-300"
-                        style="color: var(--text-color);">Request Access</a></li>
-                    <li><a href="donate.html" class="text-gray-300 hover:text-white transition duration-300"
-                        style="color: var(--text-color);">Donate</a></li>
-                </ul>
-               <button id="theme-toggle" aria-label="Toggle light and dark mode">
-                   <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun">
-                       <circle cx="12" cy="12" r="5"></circle>
-                       <line x1="12" y1="1" x2="12" y2="3"></line>
-                       <line x1="12" y1="21" x2="12" y2="23"></line>
-                       <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                       <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                       <line x1="1" y1="12" x2="3" y2="12"></line>
-                       <line x1="21" y1="12" x2="23" y2="12"></line>
-                       <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                       <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                   </svg>
-                   <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon">
-                       <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                   </svg>
-               </button>
-                <button id="hamburger-button" class="hamburger-button md:hidden" aria-label="Open mobile menu">
+            <nav class="flex items-center gap-4">
+                <button id="theme-toggle" aria-label="Toggle light and dark mode">
+                    <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+                <button id="hamburger-button" class="hamburger-button" aria-label="Open mobile menu">
                     <span class="line"></span>
                     <span class="line"></span>
                     <span class="line"></span>
