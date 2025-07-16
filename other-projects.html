@@ -230,32 +230,39 @@
             padding: 0.5rem;
         }
 
-        /* Universal Header Layout for centering title and positioning buttons */
+        /* === FINAL CORRECTED RESPONSIVE HEADER LAYOUT === */
         header .container {
-            position: relative;
             display: flex;
             align-items: center;
         }
 
         header .container a.text-3xl {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            flex-shrink: 0;
-        }
-
-        header .container nav {
-            display: flex;
-            align-items: center;
-            flex-shrink: 0;
             margin-left: auto;
+            margin-right: auto;
+        }
+        
+        @media (min-width: 768px) {
+            header .container {
+                position: relative;
+            }
+
+            header .container a.text-3xl {
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                margin: 0;
+            }
+
+            header .container nav {
+                margin-left: auto;
+            }
         }
     </style>
 </head>
 <body class="antialiased">
 
     <header class="py-6 shadow-lg transition-colors duration-300" style="background-color: var(--header-footer-bg);">
-        <div class="container flex items-center">
+        <div class="container">
             <a href="index.html" class="text-3xl md:text-5xl font-bold" style="color: var(--text-color);">No Plex Zone</a>
             <nav class="flex items-center gap-4">
                 <button id="theme-toggle" aria-label="Toggle light and dark mode">
