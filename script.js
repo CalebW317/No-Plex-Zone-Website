@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 // For a monitor-specific key, pass the key itself as the 'monitors' parameter.
                 // This tells UptimeRobot to return data for that specific monitor.
-                body: `api_key=${UPTIMEROBOT_API_KEY}&monitors=${UPTIMEROBOT_API_KEY}&format=json&logs=0&alert_contacts=0&response_times=0&custom_uptime_ratios=0&all_time_uptime_ratio=0`
+                body: `api_key=${UPTIMEROBOT_API_KEY}&monitors=${UPTIMEROBOT_API_KEY}&format=json&logs=0&alert_contacts=0&response_times=0&custom_uptime_ratios=1&all_time_uptime_ratio=0`
             });
 
             if (!response.ok) {
