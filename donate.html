@@ -7,6 +7,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
+    /* CSS Variables for Light and Dark Mode Colors */
     :root {
       --bg-color: #f7fafc;
       --text-color: #2d3748;
@@ -15,7 +16,7 @@
       --link-color: #2b6cb0;
       --link-hover-color: #2c5282;
       --hero-bg: #edf2f7;
-      --mobile-menu-bg: #e2e8f0;
+      --main-menu-bg: #e2e8f0;
     }
 
     html.dark {
@@ -26,7 +27,7 @@
       --link-color: #90cdf4;
       --link-hover-color: #c3dafe;
       --hero-bg: #1f2937;
-      --mobile-menu-bg: #1f2937;
+      --main-menu-bg: #1f2937;
     }
 
     body {
@@ -81,16 +82,7 @@
       margin-bottom: 1.5rem;
       text-align: center;
     }
-
-    nav ul li a {
-      color: var(--text-color);
-      transition: color 0.3s ease;
-    }
-
-    nav ul li a:hover {
-      color: var(--link-hover-color);
-    }
-
+    
     #theme-toggle {
       background: none;
       border: none;
@@ -123,15 +115,15 @@
       display: inline-block;
     }
 
-    /* === Hamburger Menu === */
-    .mobile-menu {
+    /* === UNIVERSAL NAVIGATION CSS === */
+    .main-menu {
       position: fixed;
       top: 0;
       right: -100%;
       width: 70%;
       max-width: 300px;
       height: 100%;
-      background-color: var(--mobile-menu-bg);
+      background-color: var(--main-menu-bg);
       padding: 2rem 1.5rem;
       box-shadow: -4px 0 10px rgba(0, 0, 0, 0.2);
       transition: right 0.3s ease-in-out;
@@ -141,30 +133,36 @@
       align-items: flex-start;
     }
 
-    .mobile-menu.is-open {
+    .main-menu.is-open {
       right: 0;
     }
 
-    .mobile-menu ul {
+    .main-menu ul {
       display: flex;
       flex-direction: column;
       width: 100%;
       margin-top: 2rem;
     }
 
-    .mobile-menu ul li {
+    .main-menu ul li {
       margin-bottom: 1.5rem;
       width: 100%;
       text-align: left;
     }
 
-    .mobile-menu ul li a {
+    .main-menu ul li a {
       font-size: 1.25rem;
       font-weight: 600;
       display: block;
       padding: 0.5rem 0;
+      color: var(--text-color);
+      transition: color 0.3s ease;
     }
 
+    .main-menu ul li a:hover {
+        color: var(--link-hover-color);
+    }
+    
     .hamburger-button {
       display: block;
       background: none;
@@ -183,16 +181,15 @@
       margin: 6px 0;
       transition: all 0.3s ease;
     }
-
+    
     .hamburger-button.is-active .line {
-      opacity: 0;
-      transform: scaleX(0);
-      pointer-events: none;       /* Prevent hover or interactions */
-      background-color: transparent !important;  /* Force line to fully disappear */
+        opacity: 0;
+        transform: scaleX(0);
+        pointer-events: none;
+        background-color: transparent !important;
     }
 
-
-    .mobile-menu-close {
+    .main-menu-close {
       background: none;
       border: none;
       cursor: pointer;
@@ -203,110 +200,59 @@
       padding: 0.5rem;
     }
 
-    @media (min-width: 768px) {
-           /* Ensure header container is flex on desktop */
-            header .container {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            }
-
-            /* Hide the spacer on desktop */
-            .header-spacer {
-                display: none;
-            }
-
-            header .container a.text-3xl { /* Reset title for desktop */
-                margin-left: 0;
-                margin-right: 0;
-                text-align: left;
-            }
-            
-            /* Hide hamburger on desktop */
-            .hamburger-button {
-                display: none;
-            }
-
-            /* Hide mobile menu container on desktop */
-            .mobile-menu {
-                display: none;
-            }
-
-            /* Show desktop nav links */
-            header .container nav ul {
-                display: flex; /* Ensure desktop nav list is flex */
-            }
+    /* Universal Header Layout for centering title and positioning buttons */
+    header .container {
+        position: relative;
+        display: flex;
+        flex-direction: row; /* Overwrite column direction for header */
+        align-items: center;
+        justify-content: normal; /* remove justify-content from base .container */
     }
 
-    @media (max-width: 767px) {
-           header .container {
-                display: flex; /* Set display to flex */
-                flex-direction: row; /* Keep items in a row */
-                align-items: center;
-            }
+    header .container a.text-3xl {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        flex-shrink: 0;
+    }
 
-             /* Style for the "No Plex Zone" title on mobile */
-            header .container a.text-3xl {
-                margin-right: auto; /* Push itself and subsequent elements to the right */
-                margin-left: auto; /* Push itself and preceding elements to the left */
-                text-align: center; /* Ensures the text is visually centered within its own space */
-                flex-shrink: 0; /* Prevent the title from shrinking too much */
-            }
-            
-            .hamburger-button {
-                display: block !important;
-            }
-            
-            /* Hide desktop nav links on mobile */
-            header .container nav ul {
-                display: none;
-            }
-
-            /* Adjust header alignment for mobile: space between logo/title and hamburger/toggle */
-            header .container nav {
-                display: flex;
-                align-items: center;
-                flex-shrink: 0;
-            }
+    header .container nav {
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+        margin-left: auto;
     }
   </style>
 </head>
 <body class="antialiased">
 
   <header class="py-6 shadow-lg transition-colors duration-300" style="background-color: var(--header-footer-bg);">
-    <div class="container flex items-center justify-between">
-      <a href="index.html" class="text-3xl font-bold" style="color: var(--text-color);">No Plex Zone</a>
-      <nav class="flex items-center justify-end gap-4">
-        <ul class="hidden md:flex space-x-6">
-          <li><a href="index.html" style="color: var(--text-color);">Back to Home</a></li>
-          <li><a href="best-devices.html" style="color: var(--text-color);">Best Devices</a></li>
-          <li><a href="https://overseerr.noplexzone.com" target="_blank" style="color: var(--text-color);">Content Requests</a></li>
-          <li><a href="https://monitarr.noplexzone.com" target="_blank" style="color: var(--text-color);">Download Queue</a></li>
-          <li><a href="other-projects.html" style="color: var(--text-color);">Other Projects</a></li>
-          <li><a href="request-access.html" style="color: var(--text-color);">Request Access</a></li>
-        </ul>
-        <button id="theme-toggle" aria-label="Toggle light and dark mode">
-          <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-          <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-        </button>
-        <button id="hamburger-button" class="hamburger-button md:hidden" aria-label="Open mobile menu">
-          <span class="line"></span>
-          <span class="line"></span>
-          <span class="line"></span>
-        </button>
-      </nav>
+    <div class="container flex items-center">
+        <a href="index.html" class="text-3xl md:text-5xl font-bold" style="color: var(--text-color);">No Plex Zone</a>
+        <nav class="flex items-center gap-4">
+            <button id="theme-toggle" aria-label="Toggle light and dark mode">
+                <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            </button>
+            <button id="hamburger-button" class="hamburger-button" aria-label="Open menu">
+                <span class="line"></span>
+                <span class="line"></span>
+                <span class="line"></span>
+            </button>
+        </nav>
     </div>
   </header>
 
-  <div id="mobile-menu" class="mobile-menu">
-    <button id="mobile-menu-close" class="mobile-menu-close" aria-label="Close mobile menu">&times;</button>
+  <div id="main-menu" class="main-menu">
+    <button id="main-menu-close" class="main-menu-close" aria-label="Close menu">&times;</button>
     <ul>
-      <li><a href="index.html" style="color: var(--text-color);">Back to Home</a></li>
-      <li><a href="best-devices.html" style="color: var(--text-color);">Best Devices</a></li>
-      <li><a href="https://overseerr.noplexzone.com" target="_blank" style="color: var(--text-color);">Content Requests</a></li>
-      <li><a href="https://monitarr.noplexzone.com" target="_blank" style="color: var(--text-color);">Download Queue</a></li>
-      <li><a href="other-projects.html" style="color: var(--text-color);">Other Projects</a></li>
-      <li><a href="request-access.html" style="color: var(--text-color);">Request Access</a></li>
+        <li><a href="index.html">Back to Home</a></li>
+        <li><a href="best-devices.html">Best Devices</a></li>
+        <li><a href="other-projects.html">Other Projects</a></li>
+        <li><a href="https://overseerr.noplexzone.com" target="_blank">Content Requests</a></li>
+        <li><a href="https://monitarr.noplexzone.com" target="_blank">Download Queue</a></li>
+        <li><a href="request-access.html">Request Access</a></li>
+        <li><a href="donate.html">Donate</a></li>
     </ul>
   </div>
 
