@@ -4,12 +4,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const htmlElement = document.documentElement;
     const themeToggle = document.getElementById('theme-toggle');
 
-    // --- NEW MOBILE NAV ELEMENTS ---
+    // --- MAIN MENU ELEMENTS (formerly MOBILE NAV) ---
     const hamburgerButton = document.getElementById('hamburger-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const mobileMenuCloseButton = document.getElementById('mobile-menu-close');
-    // Get all links inside the mobile menu to close menu on click
-    const mobileMenuLinks = mobileMenu ? mobileMenu.querySelectorAll('a') : [];
+    const mainMenu = document.getElementById('main-menu'); // Renamed from mobileMenu
+    const mainMenuCloseButton = document.getElementById('main-menu-close'); // Renamed from mobileMenuCloseButton
+    // Get all links inside the main menu to close menu on click
+    const mainMenuLinks = mainMenu ? mainMenu.querySelectorAll('a') : []; // Renamed from mobileMenuLinks
 
     // --- Light Mode / Dark Mode Logic ---
     function setTheme(theme) {
@@ -41,27 +41,25 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- NEW MOBILE NAV TOGGLE LOGIC ---
-    if (hamburgerButton && mobileMenu && mobileMenuCloseButton) {
+    // --- MAIN MENU TOGGLE LOGIC (formerly MOBILE NAV TOGGLE LOGIC) ---
+    if (hamburgerButton && mainMenu && mainMenuCloseButton) { // Renamed mobileMenu to mainMenu
         hamburgerButton.addEventListener('click', () => {
-            mobileMenu.classList.add('is-open');
-            hamburgerButton.classList.add('is-active'); // Add this line
+            mainMenu.classList.add('is-open'); // Renamed mobileMenu to mainMenu
+            hamburgerButton.classList.add('is-active');
             document.body.style.overflow = 'hidden'; // Prevent scrolling background
         });
 
-
-        mobileMenuCloseButton.addEventListener('click', () => {
-            mobileMenu.classList.remove('is-open');
-            hamburgerButton.classList.remove('is-active'); // Add this line
+        mainMenuCloseButton.addEventListener('click', () => { // Renamed mobileMenuCloseButton to mainMenuCloseButton
+            mainMenu.classList.remove('is-open'); // Renamed mobileMenu to mainMenu
+            hamburgerButton.classList.remove('is-active');
             document.body.style.overflow = ''; // Restore scrolling
         });
 
-
-        // Close mobile menu when a link is clicked
-        mobileMenuLinks.forEach(link => {
+        // Close main menu when a link is clicked
+        mainMenuLinks.forEach(link => { // Renamed mobileMenuLinks to mainMenuLinks
            link.addEventListener('click', () => {
-               mobileMenu.classList.remove('is-open');
-               hamburgerButton.classList.remove('is-active'); // Add this line
+               mainMenu.classList.remove('is-open'); // Renamed mobileMenu to mainMenu
+               hamburgerButton.classList.remove('is-active');
                document.body.style.overflow = '';
             });
         });
@@ -87,28 +85,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
-                // For a monitor-specific key, pass the key itself as the 'monitors' parameter.
-                // This tells UptimeRobot to return data for that specific monitor.
                 body: `api_key=${UPTIMEROBOT_API_KEY}&monitors=${UPTIMEROBOT_API_KEY}&format=json&logs=0&alert_contacts=0&response_times=0&custom_uptime_ratios=1&all_time_uptime_ratio=0`
             });
 
             if (!response.ok) {
-                // If the HTTP response itself is not OK (e.g., 404, 500)
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
 
             const data = await response.json();
 
-            // Check if the UptimeRobot API call was successful and returned monitor data
             if (data.stat === 'ok' && data.monitors && data.monitors.length > 0) {
-                const monitor = data.monitors[0]; // We expect one monitor since we used a specific key
+                const monitor = data.monitors[0];
 
-                // UptimeRobot Status Codes:
-                // 0 = Paused
-                // 1 = Not Checked Yet
-                // 2 = Up
-                // 8 = Seems Down
-                // 9 = Down
                 if (monitor.status === 2) {
                     plexStatusIndicator.textContent = 'Online';
                     plexStatusIndicator.className = 'status-online';
@@ -116,30 +104,23 @@ document.addEventListener('DOMContentLoaded', () => {
                     plexStatusIndicator.textContent = 'Offline';
                     plexStatusIndicator.className = 'status-offline';
                 } else {
-                    // For paused, not checked yet, or other unexpected statuses
                     plexStatusIndicator.textContent = 'Unknown Status';
-                    plexStatusIndicator.className = 'status-checking'; // Reverts to checking color
+                    plexStatusIndicator.className = 'status-checking';
                     console.warn(`Plex monitor is in an unexpected status: ${monitor.status}`);
                 }
             } else {
-                // If API response is 'ok' but no monitor data, or stat is not 'ok'
                 plexStatusIndicator.textContent = 'Error: No monitor data.';
                 plexStatusIndicator.className = 'status-error';
                 console.error('UptimeRobot API returned an issue:', data);
             }
 
         } catch (error) {
-            // Catch any network errors or errors thrown in the try block
             console.error('Error fetching Plex status:', error);
             plexStatusIndicator.textContent = 'Error fetching status';
             plexStatusIndicator.className = 'status-error';
         }
     }
 
-    // Call the status check function immediately when the DOM is loaded
     checkPlexStatus();
-
-    // Set an interval to refresh the status periodically (e.g., every 5 minutes)
-    // 5 * 60 * 1000 milliseconds = 5 minutes
     setInterval(checkPlexStatus, 5 * 60 * 1000);
 });
