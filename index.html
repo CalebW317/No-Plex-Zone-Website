@@ -220,24 +220,24 @@
 
         /* Universal Header Layout for centering title and positioning buttons */
         header .container {
+            position: relative;
             display: flex;
             align-items: center;
-            justify-content: space-between; /* Creates space between elements */
         }
 
         header .container a.text-3xl {
-            /* These margins push the title to the center regardless of elements on either side */
-            margin-left: auto;
-            margin-right: auto;
-            text-align: center;
-            flex-shrink: 0; /* Prevents title from shrinking */
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            flex-shrink: 0;
         }
 
         /* Ensure the right-side elements (theme toggle, hamburger) stay together */
         header .container nav {
             display: flex;
             align-items: center;
-            flex-shrink: 0; /* Prevents them from shrinking */
+            flex-shrink: 0;
+            margin-left: auto;
         }
     </style>
 </head>
@@ -245,8 +245,8 @@
 
     <header class="bg-gray-900 py-6 shadow-lg transition-colors duration-300"
             style="background-color: var(--header-footer-bg);">
-        <div class="container flex items-center justify-between">
-            <a href="index.html" class="text-3xl font-bold" style="color: var(--text-color);">No Plex Zone</a>
+        <div class="container flex items-center">
+            <a href="index.html" class="text-3xl md:text-5xl font-bold" style="color: var(--text-color);">No Plex Zone</a>
             <nav class="flex items-center gap-4">
                 <button id="theme-toggle" aria-label="Toggle light and dark mode">
                     <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun">
