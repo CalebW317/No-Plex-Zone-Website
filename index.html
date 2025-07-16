@@ -134,17 +134,17 @@
             color: #f59e0b; /* Amber 500 */
         }
 
-        /* === UNIVERSAL NAVIGATION CSS === */
+        /* --- UNIVERSAL NAVIGATION CSS --- */
 
         /* Main Menu Container Styling */
-        .main-menu { 
+        .main-menu {
             position: fixed;
             top: 0;
-            right: -100%;
+            right: -100%; /* Still off-screen by default */
             width: 70%;
             max-width: 300px;
             height: 100%;
-            background-color: var(--main-menu-bg); 
+            background-color: var(--main-menu-bg);
             padding: 2rem 1.5rem;
             box-shadow: -4px 0 10px rgba(0, 0, 0, 0.2);
             transition: right 0.3s ease-in-out;
@@ -154,19 +154,61 @@
             align-items: flex-start;
         }
 
-        .main-menu.is-open { /* 
+        /* Class added by JS when menu is open */
+        .main-menu.is-open {
             right: 0;
         }
 
+        /* This is the key addition to make it always visible initially on large screens */
+        @media (min-width: 768px) {
+            .main-menu {
+                position: static; /* No longer fixed for desktop layout */
+                width: auto; /* Take natural width */
+                max-width: none; /* No max width restriction */
+                height: auto; /* Take natural height */
+                background-color: transparent; /* Transparent background */
+                box-shadow: none; /* No shadow */
+                padding: 0; /* No padding */
+                display: flex; /* Ensure flex for horizontal layout */
+                flex-direction: row; /* Arrange links horizontally */
+                margin-left: auto; /* Push it to the right */
+                right: auto; /* Remove right positioning */
+            }
+            .main-menu.is-open {
+                right: auto; /* Ensure no override from is-open */
+            }
+            .main-menu ul {
+                flex-direction: row; /* Horizontal links on desktop */
+                margin-top: 0; /* Remove top margin */
+                align-items: center; /* Vertically align links */
+            }
+            .main-menu ul li {
+                margin-bottom: 0; /* No bottom margin */
+                margin-left: 1.5rem; /* Space between links */
+                text-align: center; /* Center link text */
+            }
+            .main-menu ul li:first-child {
+                margin-left: 0; /* No left margin for the first link */
+            }
+            .main-menu ul li a {
+                font-size: 1rem; /* Smaller font size for desktop links */
+                padding: 0; /* No padding */
+            }
+            .main-menu-close {
+                display: none; /* Hide close button on desktop */
+            }
+        }
+
+
         /* Main Menu List Styling */
-        .main-menu ul { 
+        .main-menu ul {
             display: flex;
             flex-direction: column;
             width: 100%;
             margin-top: 2rem;
         }
 
-        .main-menu ul li { 
+        .main-menu ul li {
             margin-bottom: 1.5rem;
             width: 100%;
             text-align: left;
@@ -180,7 +222,7 @@
         }
 
         .hamburger-button {
-            display: block; 
+            display: block;
             background: none;
             border: none;
             cursor: pointer;
@@ -204,7 +246,7 @@
             transition: opacity 0.2s ease, transform 0.2s ease;
         }
 
-        .main-menu-close { /* Renamed from .mobile-menu-close */
+        .main-menu-close {
             background: none;
             border: none;
             cursor: pointer;
@@ -215,15 +257,16 @@
             padding: 0.5rem;
         }
 
+        /* Universal Header Layout (adjusted for centered title) */
         header .container {
             display: flex;
             align-items: center;
-            justify-content: space-between; /* To push title to center and elements to right */
+            justify-content: space-between;
         }
 
         header .container a.text-3xl {
-            margin-left: auto; /* Push content to the right */
-            margin-right: auto; /* Push content to the left */
+            margin-left: auto;
+            margin-right: auto;
             text-align: center;
             flex-shrink: 0;
         }
@@ -234,7 +277,13 @@
             align-items: center;
             flex-shrink: 0;
         }
-        
+
+        /* Hide hamburger on desktop, and ensure universal menu behaves */
+        @media (min-width: 768px) {
+            .hamburger-button {
+                display: none; /* Hide hamburger on desktop */
+            }
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -269,7 +318,9 @@
         </div>
     </header>
 
-    <div id="main-menu" class="main-menu"> <button id="main-menu-close" class="main-menu-close" aria-label="Close menu"> &times;
+    <div id="main-menu" class="main-menu">
+        <button id="main-menu-close" class="main-menu-close" aria-label="Close menu">
+            &times;
         </button>
         <ul>
             <li><a href="best-devices.html" style="color: var(--text-color);">Best Devices</a></li>
