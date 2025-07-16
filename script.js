@@ -86,7 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
-                    'Cache-Control': 'no-cache' // Ensures fresh data
                 },
                 // For a monitor-specific key, pass the key itself as the 'monitors' parameter.
                 // This tells UptimeRobot to return data for that specific monitor.
