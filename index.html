@@ -134,15 +134,15 @@
             color: #f59e0b; /* Amber 500 */
         }
 
-        /* --- UNIVERSAL NAVIGATION CSS --- */
+        /* === UNIVERSAL NAVIGATION CSS (Cleaned up) === */
 
         /* Main Menu Container Styling */
         .main-menu {
-            position: fixed;
+            position: fixed; /* Fixed for sliding behavior */
             top: 0;
-            right: -100%; /* Still off-screen by default */
+            right: -100%; /* Hidden by default */
             width: 70%;
-            max-width: 300px;
+            max-width: 300px; /* Max width for consistency */
             height: 100%;
             background-color: var(--main-menu-bg);
             padding: 2rem 1.5rem;
@@ -156,51 +156,10 @@
 
         /* Class added by JS when menu is open */
         .main-menu.is-open {
-            right: 0;
+            right: 0; /* Slide into view */
         }
 
-        /* This is the key addition to make it always visible initially on large screens */
-        @media (min-width: 768px) {
-            .main-menu {
-                position: static; /* No longer fixed for desktop layout */
-                width: auto; /* Take natural width */
-                max-width: none; /* No max width restriction */
-                height: auto; /* Take natural height */
-                background-color: transparent; /* Transparent background */
-                box-shadow: none; /* No shadow */
-                padding: 0; /* No padding */
-                display: flex; /* Ensure flex for horizontal layout */
-                flex-direction: row; /* Arrange links horizontally */
-                margin-left: auto; /* Push it to the right */
-                right: auto; /* Remove right positioning */
-            }
-            .main-menu.is-open {
-                right: auto; /* Ensure no override from is-open */
-            }
-            .main-menu ul {
-                flex-direction: row; /* Horizontal links on desktop */
-                margin-top: 0; /* Remove top margin */
-                align-items: center; /* Vertically align links */
-            }
-            .main-menu ul li {
-                margin-bottom: 0; /* No bottom margin */
-                margin-left: 1.5rem; /* Space between links */
-                text-align: center; /* Center link text */
-            }
-            .main-menu ul li:first-child {
-                margin-left: 0; /* No left margin for the first link */
-            }
-            .main-menu ul li a {
-                font-size: 1rem; /* Smaller font size for desktop links */
-                padding: 0; /* No padding */
-            }
-            .main-menu-close {
-                display: none; /* Hide close button on desktop */
-            }
-        }
-
-
-        /* Main Menu List Styling */
+        /* Main Menu List Styling (applies universally) */
         .main-menu ul {
             display: flex;
             flex-direction: column;
@@ -221,14 +180,15 @@
             padding: 0.5rem 0;
         }
 
+        /* Hamburger Icon Styling (now truly universal - always block) */
         .hamburger-button {
-            display: block;
+            display: block; /* Always show the hamburger button */
             background: none;
             border: none;
             cursor: pointer;
             padding: 0.5rem;
-            z-index: 1001;
-            margin-left: 1rem;
+            z-index: 1001; /* Ensure it's above other content */
+            margin-left: 1rem; /* Space from theme toggle */
         }
 
         .hamburger-button .line {
@@ -246,6 +206,7 @@
             transition: opacity 0.2s ease, transform 0.2s ease;
         }
 
+        /* Close Button inside Main Menu (always visible once menu is open) */
         .main-menu-close {
             background: none;
             border: none;
@@ -257,32 +218,26 @@
             padding: 0.5rem;
         }
 
-        /* Universal Header Layout (adjusted for centered title) */
+        /* Universal Header Layout for centering title and positioning buttons */
         header .container {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: space-between; /* Creates space between elements */
         }
 
         header .container a.text-3xl {
+            /* These margins push the title to the center regardless of elements on either side */
             margin-left: auto;
             margin-right: auto;
             text-align: center;
-            flex-shrink: 0;
+            flex-shrink: 0; /* Prevents title from shrinking */
         }
 
         /* Ensure the right-side elements (theme toggle, hamburger) stay together */
         header .container nav {
             display: flex;
             align-items: center;
-            flex-shrink: 0;
-        }
-
-        /* Hide hamburger on desktop, and ensure universal menu behaves */
-        @media (min-width: 768px) {
-            .hamburger-button {
-                display: none; /* Hide hamburger on desktop */
-            }
+            flex-shrink: 0; /* Prevents them from shrinking */
         }
     </style>
 </head>
