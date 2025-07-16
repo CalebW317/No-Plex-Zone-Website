@@ -17,7 +17,7 @@
             --link-color: #2b6cb0; /* Tailwind blue-700 */
             --link-hover-color: #2c5282; /* Tailwind blue-800 */
             --hero-bg: #edf2f7; /* Tailwind gray-100 */
-            --mobile-menu-bg: #e2e8f0; /* New variable for mobile menu background */
+            --main-menu-bg: #e2e8f0; /* Renamed from --mobile-menu-bg */
         }
 
         /* Dark Mode Overrides (when html has class="dark") */
@@ -29,7 +29,7 @@
             --link-color: #90cdf4; /* Tailwind blue-300 */
             --link-hover-color: #c3dafe; /* Tailwind blue-200 */
             --hero-bg: #1f2937; /* Tailwind gray-800 */
-            --mobile-menu-bg: #1f2937; /* New variable for mobile menu background in dark mode */
+            --main-menu-bg: #1f2937; /* Renamed from --mobile-menu-bg */
         }
 
         /* Apply variables to your custom CSS classes */
@@ -134,69 +134,67 @@
             color: #f59e0b; /* Amber 500 */
         }
 
-        /* === NEW MOBILE/UNIVERSAL NAVIGATION CSS === */
+        /* === UNIVERSAL NAVIGATION CSS === */
 
-        /* Mobile Menu Container Styling (now universal) */
-        .mobile-menu {
-            position: fixed; /* Fixed position so it floats above content */
+        /* Main Menu Container Styling */
+        .main-menu { 
+            position: fixed;
             top: 0;
-            right: -100%; /* Initially off-screen to the right */
-            width: 70%; /* Adjust width as needed for mobile */
-            max-width: 300px; /* Max width for larger tablets/small desktops */
+            right: -100%;
+            width: 70%;
+            max-width: 300px;
             height: 100%;
-            background-color: var(--mobile-menu-bg); /* Use new mobile menu background variable */
+            background-color: var(--main-menu-bg); 
             padding: 2rem 1.5rem;
             box-shadow: -4px 0 10px rgba(0, 0, 0, 0.2);
-            transition: right 0.3s ease-in-out; /* Smooth slide-in/out animation */
-            z-index: 1000; /* Ensure it's on top of other content */
+            transition: right 0.3s ease-in-out;
+            z-index: 1000;
             display: flex;
             flex-direction: column;
-            align-items: flex-start; /* Align menu items to the left */
+            align-items: flex-start;
         }
 
-        /* Class added by JS when menu is open */
-        .mobile-menu.is-open {
-            right: 0; /* Slide into view */
+        .main-menu.is-open { /* 
+            right: 0;
         }
 
-        /* Mobile Menu List Styling */
-        .mobile-menu ul {
+        /* Main Menu List Styling */
+        .main-menu ul { 
             display: flex;
             flex-direction: column;
-            width: 100%; /* Make list full width of menu */
-            margin-top: 2rem; /* Space from close button */
+            width: 100%;
+            margin-top: 2rem;
         }
 
-        .mobile-menu ul li {
-            margin-bottom: 1.5rem; /* Space between links */
+        .main-menu ul li { 
+            margin-bottom: 1.5rem;
             width: 100%;
             text-align: left;
         }
 
-        .mobile-menu ul li a {
-            font-size: 1.25rem; /* Larger font size for mobile links */
+        .main-menu ul li a {
+            font-size: 1.25rem;
             font-weight: 600;
-            display: block; /* Make links block-level for larger tap area */
+            display: block;
             padding: 0.5rem 0;
         }
 
-        /* Hamburger Icon Styling (now universal) */
         .hamburger-button {
-            display: block; /* Always show the hamburger button */
+            display: block; 
             background: none;
             border: none;
             cursor: pointer;
             padding: 0.5rem;
-            z-index: 1001; /* Above mobile menu */
-            margin-left: 1rem; /* Space from theme toggle */
+            z-index: 1001;
+            margin-left: 1rem;
         }
 
         .hamburger-button .line {
             display: block;
-            width: 28px; /* Width of hamburger lines */
-            height: 3px; /* Thickness of lines */
-            background-color: var(--text-color); /* Matches text color */
-            margin: 6px 0; /* Space between lines */
+            width: 28px;
+            height: 3px;
+            background-color: var(--text-color);
+            margin: 6px 0;
             transition: all 0.3s ease;
         }
 
@@ -206,41 +204,37 @@
             transition: opacity 0.2s ease, transform 0.2s ease;
         }
 
-        /* Close Button inside Mobile Menu */
-        .mobile-menu-close {
+        .main-menu-close { /* Renamed from .mobile-menu-close */
             background: none;
             border: none;
             cursor: pointer;
-            align-self: flex-end; /* Align to top right of menu */
-            font-size: 2rem; /* Size of the 'X' */
+            align-self: flex-end;
+            font-size: 2rem;
             line-height: 1;
             color: var(--text-color);
             padding: 0.5rem;
         }
 
-        /* Universal Header Layout */
         header .container {
             display: flex;
             align-items: center;
-            justify-content: space-between; /* Space out elements */
+            justify-content: space-between; /* To push title to center and elements to right */
         }
 
         header .container a.text-3xl {
-            /* This will make the title center itself between the left-aligned elements (nothing in this case)
-               and the right-aligned elements (theme toggle and hamburger) */
-            margin-left: auto;
-            margin-right: auto;
+            margin-left: auto; /* Push content to the right */
+            margin-right: auto; /* Push content to the left */
             text-align: center;
-            flex-shrink: 0; /* Prevent the title from shrinking too much */
+            flex-shrink: 0;
         }
 
         /* Ensure the right-side elements (theme toggle, hamburger) stay together */
         header .container nav {
             display: flex;
             align-items: center;
-            flex-shrink: 0; /* Prevent them from shrinking */
+            flex-shrink: 0;
         }
-
+        
     </style>
 </head>
 <body class="antialiased">
@@ -266,7 +260,7 @@
                         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                     </svg>
                 </button>
-                <button id="hamburger-button" class="hamburger-button" aria-label="Open mobile menu">
+                <button id="hamburger-button" class="hamburger-button" aria-label="Open menu">
                     <span class="line"></span>
                     <span class="line"></span>
                     <span class="line"></span>
@@ -275,9 +269,7 @@
         </div>
     </header>
 
-    <div id="mobile-menu" class="mobile-menu">
-        <button id="mobile-menu-close" class="mobile-menu-close" aria-label="Close mobile menu">
-            &times;
+    <div id="main-menu" class="main-menu"> <button id="main-menu-close" class="main-menu-close" aria-label="Close menu"> &times;
         </button>
         <ul>
             <li><a href="best-devices.html" style="color: var(--text-color);">Best Devices</a></li>
