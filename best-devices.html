@@ -230,35 +230,45 @@
             color: var(--text-color);
             padding: 0.5rem;
         }
-
-        /* Universal Header Layout for centering title and positioning buttons */
+        
+        /* === FINAL CORRECTED RESPONSIVE HEADER LAYOUT === */
+        
+        /* Default mobile layout: Title is centered in the available space */
         header .container {
-            position: relative; /* Added to act as a positioning context */
             display: flex;
             align-items: center;
         }
 
         header .container a.text-3xl {
-            position: absolute; /* Position the title independently */
-            left: 50%;
-            transform: translateX(-50%); /* Perfectly center the title */
-            flex-shrink: 0; /* Prevents title from shrinking */
+            /* Using auto margins on a flex item centers it in the available space */
+            margin-left: auto;
+            margin-right: auto;
         }
+        
+        /* Desktop layout (768px and up) */
+        @media (min-width: 768px) {
+            header .container {
+                position: relative; /* Needed for absolute positioning of the title */
+            }
 
-        /* Ensure the right-side elements (theme toggle, hamburger) stay together */
-        header .container nav {
-            display: flex;
-            align-items: center;
-            flex-shrink: 0; /* Prevents them from shrinking */
-            margin-left: auto; /* Push the navigation icons to the right */
+            header .container a.text-3xl {
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                margin: 0; /* Reset the auto margins from mobile */
+            }
+
+            header .container nav {
+                margin-left: auto; /* Push nav icons to the far right */
+            }
         }
     </style>
 </head>
 <body class="antialiased">
 
     <header class="py-6 shadow-lg transition-colors duration-300" style="background-color: var(--header-footer-bg);">
-        <div class="container flex items-center">
-            <a href="index.html" class="text-3xl md:text-5xl font-bold">No Plex Zone</a>
+        <div class="container">
+            <a href="index.html" class="text-3xl md:text-5xl font-bold" style="color: var(--text-color);">No Plex Zone</a>
             <nav class="flex items-center gap-4">
                 <button id="theme-toggle" aria-label="Toggle light and dark mode">
                     <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun">
@@ -341,7 +351,7 @@
                     <div class="device-item">
                         <img class="device-logo" src="https://cdn-icons-png.freepik.com/512/10922/10922622.png" alt="Smart TV Clipart" >
                         <h3>Smart TVs (Built-in Plex)</h3>
-                        <p class="text-gray-300">
+                        <p>
                             Many modern Samsung, LG, Sony, and other smart TVs have a built-in Plex app, offering
                             convenience without needing an extra device. Check your TV's app store.
                         </p>
@@ -351,7 +361,7 @@
                     <div class="device-item">
                         <img class="device-logo" src="https://cdn-icons-png.flaticon.com/256/4504/4504138.png" alt="Mobile Device Clipart" >
                         <h3>Mobile Devices</h3>
-                        <p class="text-gray-300">
+                        <p>
                             Perfect for on-the-go streaming. Both iOS and Android devices have excellent Plex apps that recently went under a complete overhaul.
                         </p>
                         <a href="https://amzn.to/4lzbzMh" target="_blank" class="btn-primary">View on Amazon</a>
