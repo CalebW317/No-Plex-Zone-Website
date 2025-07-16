@@ -233,16 +233,15 @@
 
         /* Universal Header Layout for centering title and positioning buttons */
         header .container {
+            position: relative; /* Added to act as a positioning context */
             display: flex;
             align-items: center;
-            justify-content: space-between; /* Creates space between elements */
         }
 
         header .container a.text-3xl {
-            /* These margins push the title to the center regardless of elements on either side */
-            margin-left: auto;
-            margin-right: auto;
-            text-align: center;
+            position: absolute; /* Position the title independently */
+            left: 50%;
+            transform: translateX(-50%); /* Perfectly center the title */
             flex-shrink: 0; /* Prevents title from shrinking */
         }
 
@@ -251,15 +250,14 @@
             display: flex;
             align-items: center;
             flex-shrink: 0; /* Prevents them from shrinking */
+            margin-left: auto; /* Push the navigation icons to the right */
         }
-
-        /* Removed all old media queries that modified menu/hamburger display based on screen size. */
     </style>
 </head>
 <body class="antialiased">
 
     <header class="py-6 shadow-lg transition-colors duration-300" style="background-color: var(--header-footer-bg);">
-        <div class="container flex items-center justify-between">
+        <div class="container flex items-center">
             <a href="index.html" class="text-3xl font-bold" style="color: var(--text-color);">No Plex Zone</a>
             <nav class="flex items-center gap-4">
                 <button id="theme-toggle" aria-label="Toggle light and dark mode">
@@ -304,8 +302,8 @@
             <div class="card">
                 <p class="text-lg leading-relaxed mb-8 text-center"
                    style="color: var(--text-color);">
-                    Plex is incredibly versatile and runs on almost any device. However, for the best streaming experience,
-                    I recommend the following. Click the "View on Amazon" button to learn more or purchase!
+                     Plex is incredibly versatile and runs on almost any device. However, for the best streaming experience,
+                     I recommend the following. Click the "View on Amazon" button to learn more or purchase!
                 </p>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
