@@ -217,30 +217,36 @@
             color: var(--text-color);
             padding: 0.5rem;
         }
-
-        /* === CORRECTED RESPONSIVE HEADER LAYOUT === */
-        /* Default mobile layout: Title left, icons right */
+        
+        /* === FINAL CORRECTED RESPONSIVE HEADER LAYOUT === */
+        
+        /* Default mobile layout: Title is centered in the available space */
         header .container {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+        }
+
+        header .container a.text-3xl {
+            /* Using auto margins on a flex item centers it in the available space */
+            margin-left: auto;
+            margin-right: auto;
         }
         
         /* Desktop layout (768px and up) */
         @media (min-width: 768px) {
             header .container {
                 position: relative; /* Needed for absolute positioning of the title */
-                justify-content: normal; /* Disable space-between on desktop */
             }
 
             header .container a.text-3xl {
                 position: absolute;
                 left: 50%;
                 transform: translateX(-50%);
+                margin: 0; /* Reset the auto margins from mobile */
             }
 
             header .container nav {
-                margin-left: auto; /* Push nav icons to the right */
+                margin-left: auto; /* Push nav icons to the far right */
             }
         }
     </style>
