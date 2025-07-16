@@ -30,7 +30,7 @@
             --link-hover-color: #c3dafe;
             --hero-bg: #1f2937;
             --generic-icon-color: #f59e0b;
-            --main-menu-bg: #1f2937; 
+            --main-menu-bg: #1f2937;
         }
 
         body {
@@ -45,7 +45,7 @@
             -moz-osx-font-smoothing: grayscale;
         }
         .container {
-            max-width: 1000px; /* Note: This is different from index.html (1200px) */
+            max-width: 1000px;
             margin: 0 auto;
             padding: 1rem;
             flex-grow: 1;
@@ -150,10 +150,10 @@
         /* === UNIVERSAL NAVIGATION CSS === */
 
         /* Main Menu Container Styling */
-        .main-menu { 
+        .main-menu {
             position: fixed;
             top: 0;
-            right: -100%; /* Hidden by default */
+            right: -100%;
             width: 70%;
             max-width: 300px;
             height: 100%;
@@ -167,12 +167,12 @@
             align-items: flex-start;
         }
 
-        .main-menu.is-open { 
-            right: 0; /* Slide into view */
+        .main-menu.is-open {
+            right: 0;
         }
 
         /* Main Menu List Styling (applies universally) */
-        .main-menu ul { 
+        .main-menu ul {
             display: flex;
             flex-direction: column;
             width: 100%;
@@ -194,13 +194,13 @@
 
         /* Hamburger Icon Styling (now truly universal - always block) */
         .hamburger-button {
-            display: block; /* Always show the hamburger button */
+            display: block;
             background: none;
             border: none;
             cursor: pointer;
             padding: 0.5rem;
-            z-index: 1001; /* Ensure it's above other content */
-            margin-left: 1rem; /* Space from theme toggle */
+            z-index: 1001;
+            margin-left: 1rem;
         }
 
         .hamburger-button .line {
@@ -215,8 +215,8 @@
         .hamburger-button.is-active .line {
             opacity: 0;
             transform: scaleX(0);
-            pointer-events: none; /* Prevent interactions when hidden */
-            background-color: transparent !important; /* Force line to fully disappear */
+            pointer-events: none;
+            background-color: transparent !important;
         }
 
         /* Close Button inside Main Menu */
@@ -235,32 +235,29 @@
         header .container {
             display: flex;
             align-items: center;
-            justify-content: space-between; /* Creates space between elements */
+            justify-content: space-between;
         }
 
-        header .container a.text-3xl {
-            /* These margins push the title to the center regardless of elements on either side */
-            margin-left: auto;
-            margin-right: auto;
+        /* THIS IS THE KEY CSS CHANGE FOR CENTERING THE TITLE */
+        header .container a.text-4xl {
+            flex-grow: 1;
             text-align: center;
-            flex-shrink: 0; /* Prevents title from shrinking */
+            flex-shrink: 0;
         }
 
         /* Ensure the right-side elements (theme toggle, hamburger) stay together */
         header .container nav {
             display: flex;
             align-items: center;
-            flex-shrink: 0; /* Prevents them from shrinking */
+            flex-shrink: 0;
         }
-
-        /* Removed all old media queries that modified menu/hamburger display based on screen size. */
     </style>
 </head>
 <body class="antialiased">
 
     <header class="py-6 shadow-lg transition-colors duration-300" style="background-color: var(--header-footer-bg);">
         <div class="container flex items-center justify-between">
-            <a href="index.html" class="text-3xl font-bold" style="color: var(--text-color);">No Plex Zone</a>
+            <a href="index.html" class="text-4xl font-bold" style="color: var(--text-color);">No Plex Zone</a>
             <nav class="flex items-center gap-4">
                 <button id="theme-toggle" aria-label="Toggle light and dark mode">
                     <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun">
@@ -287,7 +284,9 @@
         </div>
     </header>
 
-    <div id="main-menu" class="main-menu"> <button id="main-menu-close" class="main-menu-close" aria-label="Close menu">&times;</button> <ul>
+    <div id="main-menu" class="main-menu">
+        <button id="main-menu-close" class="main-menu-close" aria-label="Close menu">&times;</button>
+        <ul>
             <li><a href="index.html" style="color: var(--text-color);">Back to Home</a></li>
             <li><a href="best-devices.html" style="color: var(--text-color);">Best Devices</a></li>
             <li><a href="other-projects.html" style="color: var(--text-color);">Other Projects</a></li>
